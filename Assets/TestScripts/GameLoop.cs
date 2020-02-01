@@ -9,6 +9,8 @@ public class GameLoop : MonoBehaviour
 {
     public int Rounds = 4;
 
+    public SplashView splashView;
+    public LobbyView lobbyView;
     //public CountdownView countdownView;
     //public DrawTimerView drawTimerView;
     //public NextPlayerView nextPlayerView;
@@ -17,7 +19,7 @@ public class GameLoop : MonoBehaviour
     public List<int> Devices = new List<int>();
 
     public float DrawingRoundDuration = 90;
-    public int numPlayers = 4;
+    public int numPlayers = 2;
     public int numRounds = 4;
     public float CountdownDuration = 4f;
     public float nextPlayerDuration = 2f;
@@ -26,6 +28,7 @@ public class GameLoop : MonoBehaviour
     // State vars
     private int Round = 0;
     private int PlayerIdx = 0;
+    private Component CurrentView;
 
     //public static GameLoop instance;
 
@@ -33,6 +36,8 @@ public class GameLoop : MonoBehaviour
     {
         AirConsole.instance.onConnect += OnPlayerConnect;
         AirConsole.instance.onDisconnect += OnPlayerDisconnect;
+
+        SetView(splashView);
     }
 
     private void OnPlayerDisconnect(int device_id)
@@ -45,26 +50,29 @@ public class GameLoop : MonoBehaviour
         Devices.Add(device_id);
 
         if (Devices.Count >= numPlayers)
-            StartGame();
+            StartCoroutine(StartGame());
     }
 
-    internal void StartGame()
+    internal IEnumerator StartGame()
     {
-        Debug.Log("Starting the game....");
-        StartCoroutine(GameLoopCo());
+        yield return StartCoroutine(SplashCo());
+        yield return StartCoroutine(LobbyCo());
+        yield return StartCoroutine(GameLoopCo());
     }
 
-    //// Start is called before the first frame update
-    //void Start()
-    //{
+    private IEnumerator LobbyCo()
+    {
+        Debug.Log("Waiting for players to connect");
+        SetView(lobbyView);
+        yield return new WaitUntil(() => Devices.Count >= numPlayers);
+        Debug.Log("All players connected");
+    }
 
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    private IEnumerator SplashCo()
+    {
+        yield return new WaitForSeconds(5f);
+        yield break;
+    }
 
     private IEnumerator GameLoopCo()
     {
@@ -172,5 +180,16 @@ public class GameLoop : MonoBehaviour
 
         string data = JsonConvert.SerializeObject(msg);   
         AirConsole.instance.Message(deviceId, data);
+    }
+
+    private void SetView(Component component)
+    {
+        if (CurrentView != null)
+            CurrentView.gameObject.SetActive(false);
+
+        CurrentView = component;
+
+        if (CurrentView != null)
+            CurrentView.gameObject.SetActive(true);
     }
 }
