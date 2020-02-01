@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class AirPlayTestController : MonoBehaviour {
 
+    public Transform LineRendererParent;
+
     void Awake () {
         AirConsole.instance.onMessage += OnMessage;
     }
@@ -42,10 +44,18 @@ public class AirPlayTestController : MonoBehaviour {
 
             for (int j = 0; j < lines.Count; j++) {
                 var line = lines[j];
+
                 //create a gameobject
-                var obj = new GameObject ("Line");
-                obj.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f));
+                var obj = new GameObject ("Line_" + j);
+                obj.transform.parent = LineRendererParent;
+
+                // z offset is because new lines need to render on top of old
+                obj.transform.localPosition = new Vector3(0, 0, -j * 0.1f);
+                obj.transform.localScale = Vector3.one;
+
+                //obj.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f));
                 lineObjs.Add(obj);
+
                 //create a line renderer component
                 var lineRenderer = obj.AddComponent<LineRenderer> ();
                 lineRenderer.material = new Material (Shader.Find ("Sprites/Default"));
@@ -53,8 +63,9 @@ public class AirPlayTestController : MonoBehaviour {
                 Color color;
                 ColorUtility.TryParseHtmlString (line.First ().color, out color);
                 lineRenderer.material.color = color;
+
                 //plot all the points on the line & set color/thickness
-                lineRenderer.SetVertexCount (line.Count);
+                lineRenderer.positionCount = line.Count;
                 lineRenderer.useWorldSpace = false;
                 for (int k = 0; k < line.Count; k++) {
                     var point = line[k];
