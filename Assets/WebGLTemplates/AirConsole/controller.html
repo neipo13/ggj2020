@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create HTML5 Canvas JavaScript Drawing App Example</title>
+</head>
+
+<body>
+    <div id="canvasDiv"></div>
+    <div style="display:none;">
+        <img id="source"
+            src="https://upload.wikimedia.org/wikipedia/commons/8/86/Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg"
+            width="600" height="300">
+    </div>
+    <div class='p-block'>
+        <div>
+            <input type="button" style="background-color:blue;" class="p-button" onclick="changeColor(2)">
+            <input type="button" style="background-color:red;" class="p-button" onclick="changeColor(1)">
+            <input type="button" style="background-color:green;" class="p-button" onclick="changeColor(3)">
+            <input type="button" style="background-color:black; " class="p-button" onclick="changeColor(0)">
+            <input type="button" style="background-color:white;" class="p-button" onclick="changeColor(4)">
+        </div>
+        <div>
+            <input type="button" style="background-color:blue;" class="p-button" onclick="changeColor(2)">
+            <input type="button" style="background-color:red;" class="p-button" onclick="changeColor(1)">
+            <input type="button" style="background-color:green;" class="p-button" onclick="changeColor(3)">
+            <input type="button" style="background-color:black; " class="p-button" onclick="changeColor(0)">
+            <input type="button" style="background-color:white;" class="p-button" onclick="changeColor(4)">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
+
+</body>
+
+</html>
+
+<style>
+    .p-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .p-block {
+        margin: 19px;
+    }
+
+    .p-row {
+        margin-right: 17px;
+    }
+</style>
+
+<script>
+    var canvasWidth = 600;
+    var canvasHeight = 300;
+    var canvasDiv = document.getElementById('canvasDiv');
+    var paintData = new Array();
+    var colorArray = [
+        "#000000",
+        "#df4b26",
+        "#0000ff",
+        "#00ff00",
+        "#ffffff"
+    ];
+    var colorIndex = 0;
+    var drawBG = false;
+    canvas = document.createElement('canvas');
+    canvas.setAttribute('width', canvasWidth);
+    canvas.setAttribute('height', canvasHeight);
+    canvas.setAttribute('id', 'canvas');
+    canvasDiv.appendChild(canvas);
+    if (typeof G_vmlCanvasManager != 'undefined') {
+        canvas = G_vmlCanvasManager.initElement(canvas);
+    }
+    context = canvas.getContext("2d");
+
+
+    const image = document.getElementById('source');
+
+    var airconsole;
+    var me = this;
+    me.airconsole = new AirConsole({ "orientation": "landscape", "synchronize_time": "true" });
+
+    me.airconsole.onMessage = function (from, data) {
+        console.log("onMessage", from, data);
+    };
+    canvas.addEventListener("mousedown", function (e) {
+        var mouseX = e.pageX - this.offsetLeft;
+        var mouseY = e.pageY - this.offsetTop;
+
+        paint = true;
+        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+        redraw();
+    });
+    canvas.addEventListener("mousemove", function (e) {
+        if (paint) {
+            addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+            redraw();
+        }
+    });
+    canvas.addEventListener("mouseup", function (e) {
+        paint = false;
+    });
+
+    canvas.addEventListener("touchstart", function (e) {
+        var x = (event.targetTouches[0] ? event.targetTouches[0].pageX : event.changedTouches[event.changedTouches.length - 1].pageX);
+        var y = (event.targetTouches[0] ? event.targetTouches[0].pageY : event.changedTouches[event.changedTouches.length - 1].pageY);
+        var mouseX = x - this.offsetLeft;
+        var mouseY = y - this.offsetTop;
+
+        paint = true;
+        addClick(x - this.offsetLeft, y - this.offsetTop);
+        redraw();
+
+    });
+    canvas.addEventListener("touchmove", function (e) {
+        var x = (event.targetTouches[0] ? event.targetTouches[0].pageX : event.changedTouches[event.changedTouches.length - 1].pageX);
+        var y = (event.targetTouches[0] ? event.targetTouches[0].pageY : event.changedTouches[event.changedTouches.length - 1].pageY);
+        if (paint) {
+            addClick(x - this.offsetLeft, y - this.offsetTop, true);
+            redraw();
+        }
+    });
+    canvas.addEventListener("touchend", function (e) {
+        paint = false;
+    });
+    var paint;
+
+    function changeColor(i) {
+        colorIndex = i;
+    }
+
+    function addClick(x, y, dragging) {
+        var data = {
+            x: x,
+            y: y,
+            dragging: dragging,
+            color: colorArray[colorIndex],
+            size: 5
+        };
+        paintData.push(data);
+    }
+
+    function redraw() {
+        context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+
+        context.drawImage(image, 0, 0);
+        context.lineJoin = "round";
+
+        for (var i = 0; i < paintData.length; i++) {
+            context.strokeStyle = paintData[i].color;
+            context.lineWidth = paintData[i].size;
+            context.beginPath();
+            if (paintData[i].dragging && i) {
+                context.moveTo(paintData[i - 1].x, paintData[i - 1].y);
+            } else {
+                context.moveTo(paintData[i].x - 1, paintData[i].y);
+            }
+            context.lineTo(paintData[i].x, paintData[i].y);
+            context.closePath();
+            context.stroke();
+        }
+        me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
+    }
+
+    function submitImage() {
+        //do airconsole image submit stuff?
+        console.log("sending air console info");
+        me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
+
+        paintData = new Array();
+        redraw();
+    }
+    redraw();
+</script>
