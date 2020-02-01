@@ -165,13 +165,12 @@ public class GameLoop : MonoBehaviour
     private void BroadcastToPhone(int playerIdx, string evt)
     {
         var msg = new Dictionary<String, String>();
-        msg["deviceId"] = Devices[playerIdx].ToString();
+
+        int deviceId = Devices[playerIdx];
+
         msg["event"] = evt;
 
-        string json = JsonConvert.SerializeObject(msg);
-        
-        AirConsole.instance.Broadcast(json);
-
-        Debug.Log("Broadcasting... " + json);
+        string data = JsonConvert.SerializeObject(msg);   
+        AirConsole.instance.Message(deviceId, data);
     }
 }
