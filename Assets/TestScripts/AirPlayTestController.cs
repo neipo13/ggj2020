@@ -55,6 +55,7 @@ public class AirPlayTestController : MonoBehaviour {
                 lineRenderer.material.color = color;
                 //plot all the points on the line & set color/thickness
                 lineRenderer.SetVertexCount (line.Count);
+                lineRenderer.useWorldSpace = false;
                 for (int k = 0; k < line.Count; k++) {
                     var point = line[k];
                     lineRenderer.SetPosition (k, new Vector3 (point.x / 100f, -point.y / 100f, 10f));

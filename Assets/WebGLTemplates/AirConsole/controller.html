@@ -6,28 +6,31 @@
 </head>
 
 <body>
-    <div id="canvasDiv"></div>
-    <div style="display:none;">
-        <img id="source"
-            src="Mona_Lisa-1503-Leonardo_daVinci.png"
-            width="375" height="517">
-    </div>
-    <div class='p-block'>
-        <div>
-            <input type="button" style="background-color:#ff0000;" class="p-button" onclick="changeColor('#ff0000')">
-            <input type="button" style="background-color:#d49453;" class="p-button" onclick="changeColor('#d49453')">
-            <input type="button" style="background-color:#fff948;" class="p-button" onclick="changeColor('#fff948')">
-            <input type="button" style="background-color:#ffffff; " class="p-button" onclick="changeColor('#ffffff')">
-            <input type="button" class="p-button">
+    <div id="drawing"> 
+        <div id="canvasDiv"></div>
+        <div style="display:none;">
+            <img id="source"
+                src="Mona_Lisa-1503-Leonardo_daVinci.png"
+                width="375" height="517">
         </div>
-        <div>
-            <input type="button" style="background-color:#19b721;" class="p-button" onclick="changeColor('#19b721')">
-            <input type="button" style="background-color:#0082ff;" class="p-button" onclick="changeColor('#0082ff')">
-            <input type="button" style="background-color:#b104d2;" class="p-button" onclick="changeColor('#b104d2')">
-            <input type="button" style="background-color:#000000; " class="p-button" onclick="changeColor('#000000')">
-            <input type="button" class="p-button">
+        <div class='p-block'>
+            <div>
+                <input type="button" style="background-color:#ff0000;" class="p-button" onclick="changeColor('#ff0000')">
+                <input type="button" style="background-color:#d49453;" class="p-button" onclick="changeColor('#d49453')">
+                <input type="button" style="background-color:#fff948;" class="p-button" onclick="changeColor('#fff948')">
+                <input type="button" style="background-color:#ffffff; " class="p-button" onclick="changeColor('#ffffff')">
+                <input type="button" class="p-button">
+            </div>
+            <div>
+                <input type="button" style="background-color:#19b721;" class="p-button" onclick="changeColor('#19b721')">
+                <input type="button" style="background-color:#0082ff;" class="p-button" onclick="changeColor('#0082ff')">
+                <input type="button" style="background-color:#b104d2;" class="p-button" onclick="changeColor('#b104d2')">
+                <input type="button" style="background-color:#000000; " class="p-button" onclick="changeColor('#000000')">
+                <input type="button" class="p-button">
+            </div>
         </div>
     </div>
+    
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
