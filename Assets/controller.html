@@ -6,43 +6,79 @@
 </head>
 
 <body>
-    <div id="draw" class="hidden"> 
+    <div id="draw" class="hidden">
         <div id="canvasDiv"></div>
         <div style="display:none;">
-            <img id="source"
-                src="Mona_Lisa-1503-Leonardo_daVinci.png"
-                width="375" height="517">
+            <img id="source" src="Mona_Lisa-1503-Leonardo_daVinci.png" width="375" height="517">
         </div>
         <div class='p-block'>
             <div>
-                <input type="button" style="background-color:#ff0000;" class="p-button" onclick="changeColor('#ff0000')">
-                <input type="button" style="background-color:#d49453;" class="p-button" onclick="changeColor('#d49453')">
-                <input type="button" style="background-color:#fff948;" class="p-button" onclick="changeColor('#fff948')">
-                <input type="button" style="background-color:#ffffff; " class="p-button" onclick="changeColor('#ffffff')">
+                <input type="button" style="background-color:#ff0000;" class="p-button"
+                    onclick="changeColor('#ff0000')">
+                <input type="button" style="background-color:#d49453;" class="p-button"
+                    onclick="changeColor('#d49453')">
+                <input type="button" style="background-color:#fff948;" class="p-button"
+                    onclick="changeColor('#fff948')">
+                <input type="button" style="background-color:#ffffff; " class="p-button"
+                    onclick="changeColor('#ffffff')">
                 <input type="button" class="p-button">
             </div>
             <div>
-                <input type="button" style="background-color:#19b721;" class="p-button" onclick="changeColor('#19b721')">
-                <input type="button" style="background-color:#0082ff;" class="p-button" onclick="changeColor('#0082ff')">
-                <input type="button" style="background-color:#b104d2;" class="p-button" onclick="changeColor('#b104d2')">
-                <input type="button" style="background-color:#000000; " class="p-button" onclick="changeColor('#000000')">
+                <input type="button" style="background-color:#19b721;" class="p-button"
+                    onclick="changeColor('#19b721')">
+                <input type="button" style="background-color:#0082ff;" class="p-button"
+                    onclick="changeColor('#0082ff')">
+                <input type="button" style="background-color:#b104d2;" class="p-button"
+                    onclick="changeColor('#b104d2')">
+                <input type="button" style="background-color:#000000; " class="p-button"
+                    onclick="changeColor('#000000')">
                 <input type="button" class="p-button">
             </div>
         </div>
     </div>
 
     <div id="wait" class="hidden">
-
+        <h1>Waiting</h1>
     </div>
 
-    <div id="vote" class="hidden">
+    <div id="vote">
+        <div>
+            <div class="v-header">First Place</div>
+            <div class="v-block">
+                <div type="button" class="v-button" onclick="vote(1, 1)">1</div>
+                <div type="button" class="v-button" onclick="vote(1, 2)">2</div>
+                <div type="button" class="v-button" onclick="vote(1, 3)">3</div>
+                <div type="button" class="v-button" onclick="vote(1, 4)">4</div>
+            </div>
+        </div>
+        <div>
+            <div class="v-header">Second Place</div>
+            <div class="v-block">
+                <div type="button" class="v-button" onclick="vote(2, 1)">1</div>
+                <div type="button" class="v-button" onclick="vote(2, 2)">2</div>
+                <div type="button" class="v-button" onclick="vote(2, 3)">3</div>
+                <div type="button" class="v-button" onclick="vote(2, 4)">4</div>
+            </div>
+        </div>
+        <div>
+            <div class="v-header">Third Place</div>
+            <div class="v-block">
+                <div type="button" class="v-button" onclick="vote(2, 1)">1</div>
+                <div type="button" class="v-button" onclick="vote(2, 2)">2</div>
+                <div type="button" class="v-button" onclick="vote(2, 3)">3</div>
+                <div type="button" class="v-button" onclick="vote(2, 4)">4</div>
+            </div>
+        </div>
+        <div>
+            <div class="button" type="button" onclick="sendVotes()"> Submit Votes</div>
+        </div>
 
     </div>
 
     <div id="winlose" class="hidden">
-
+        <h1 id="win-text"></h1>
     </div>
-    
+
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
@@ -55,15 +91,80 @@
     .p-button {
         width: 44px;
         height: 44px;
-        margin-right:22px;
+        margin-right: 22px;
     }
 
     .p-block {
         padding: 19px;
-        border-style:solid;
+        border-style: solid;
         border-color: black;
         border-radius: 2px;
         max-width: 375px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .v-block {
+        padding: 22px;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .v-button {
+        width: 66px;
+        height: 66px;
+        margin: 8px;
+        border-radius: 50%;
+        background-color: blue;
+        font-family: iAWriterQuattroS;
+        font-size: 36px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+        display: inline-block;
+    }
+
+    .v-header {
+        width: 100%;
+        height: 36px;
+        font-family: Inter;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: #8f8e8d;
+    }
+
+    #vote {
+        min-width: 375px;
+        min-height: 667px;
+        max-width: 375px;
+        max-height: 667px;
+    }
+
+    .button {
+        width: 262px;
+        height: 56px;
+        border-radius: 2px;
+        background-color: #6f6f6f;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
     }
 </style>
 
@@ -79,6 +180,8 @@
     var waitingElement = document.getElementById("wait");
     var votingElement = document.getElementById("vote");
     var winLoseElement = document.getElementById("winlose");
+    var winTextElement = document.getElementById("win-text");
+    var votes = [-1, -1, -1];
 
     canvas = document.createElement('canvas');
     canvas.setAttribute('width', canvasWidth);
@@ -99,41 +202,45 @@
 
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
-        if(data.action === 'draw'){
+        if (data.action === 'draw') {
             drawingElement.classList.remove("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if(data.action == 'wait'){
+        else if (data.action == 'wait') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.remove("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if(data.action == 'vote'){
+        else if (data.action == 'vote') {
             drawingElement.classList.add("hidden");
             votingElement.classList.remove("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if(data.action == 'win'){
+        else if (data.action == 'win') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
+            winTextElement.innerText = "Winner!";
 
         }
-        else if(data.action == 'lose'){
-            drawingElement.classList.remove("hidden");
+        else if (data.action == 'lose') {
+            drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
+            winTextElement.innerText = "Loser :(";
         }
 
     };
+
+
     canvas.addEventListener("mousedown", function (e) {
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
@@ -189,6 +296,16 @@
             size: 5
         };
         paintData.push(data);
+    }
+
+    function vote(place, player){
+        votes[place-1]=player;
+    }
+
+    function sendVotes(){
+        if(votes[0] > -1 && votes[1] > -1 && votes[2] > -1){
+            me.airconsole.message(AirConsole.SCREEN, { "action": "send-vote-data", "vote-data": votes });
+        }
     }
 
     function redraw() {
