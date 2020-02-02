@@ -33,6 +33,7 @@ public class GameLoop : MonoBehaviour
     // State vars
     private int Round = 0;
     private int PlayerIdx = 0;
+    private int numPeopleVoted = 0;
     private Component CurrentView;
     private int paintingIdx;
 
@@ -102,6 +103,8 @@ public class GameLoop : MonoBehaviour
                 yield return StartCoroutine(DrawingTimerCo());
                 yield return StartCoroutine(PostDrawingRest());
             }
+
+            yield return StartCoroutine(VoteCo());
             yield return StartCoroutine(RoundEnd());
         }
 
@@ -137,6 +140,14 @@ public class GameLoop : MonoBehaviour
     private IEnumerator RoundEnd()
     {
         yield return new WaitForSeconds(nextRoundDuration);
+    }
+
+    private IEnumerator VoteCo()
+    {
+        numPeopleVoted = 0;
+        // Put phone client in the vote state
+        BroadcastToAll("vote");
+        yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });
     }
 
     private IEnumerator PlayAgain()
@@ -213,6 +224,14 @@ public class GameLoop : MonoBehaviour
     {
         int deviceId = Devices[playerIdx]; 
         AirConsole.instance.Message(deviceId, evt);
+    }
+
+    private void BroadcastToAll(string evt)
+    {
+        for(var i = 0; i < numPlayers; i++)
+        {
+            BroadcastToPhone(Devices[i], evt);
+        }
     }
 
     private void BroadcastToPhone(int playerIdx, string evt, object data)
