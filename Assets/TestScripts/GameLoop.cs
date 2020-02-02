@@ -15,11 +15,11 @@ public class GameLoop : MonoBehaviour
     public LobbyView lobbyView;
     public CountdownView countdownView;
     public VoteResultsView voteResultsView;
+    public DrawTimerView drawTimerView;
 
     public List<Sprite> sprites;
 
     public Painting Painting;
-    //public DrawTimerView drawTimerView;
     //public NextPlayerView nextPlayerView;
     //public RoundView roundView;
 
@@ -221,15 +221,17 @@ public class GameLoop : MonoBehaviour
 
         float timeRemaining = DrawingRoundDuration;
 
-        //drawTimerView.gameObject.SetActive(true);
-
+        drawTimerView.Show();
+        
         while (timeRemaining > 0)
         {
             yield return new WaitForSeconds(1f);
             timeRemaining -= 1f;
             Debug.Log(timeRemaining);
-            //drawTimerView.SetText(timeRemaining);
+            drawTimerView.SetTimeRemaining(timeRemaining);
         }
+
+        drawTimerView.Hide();
 
         BroadcastToPlayer(PlayerIdx, "wait");
 
