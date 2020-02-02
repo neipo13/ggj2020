@@ -293,20 +293,20 @@
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if (data.action == 'wait') {
+        else if (data == 'wait') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.remove("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if (data.action == 'vote') {
+        else if (data == 'vote') {
             drawingElement.classList.add("hidden");
             votingElement.classList.remove("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if (data.action == 'win') {
+        else if (data == 'win') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
@@ -314,7 +314,7 @@
             winTextElement.innerText = "Winner!";
 
         }
-        else if (data.action == 'lose') {
+        else if (data == 'lose') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");

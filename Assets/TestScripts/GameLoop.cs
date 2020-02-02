@@ -173,11 +173,7 @@ public class GameLoop : MonoBehaviour
         //tell phone 
         BroadcastToPhone(PlayerIdx, "DrawStart");
         //tell everyone else to wait
-        for (var i = 0; i < numPlayers; i++)
-        {
-            if(i == PlayerIdx) continue;
-            BroadcastToPhone(i, "wait");
-        }
+        BroadcastToOthers(PlayerIdx, "wait");
 
         float timeRemaining = DrawingRoundDuration;
 
@@ -190,7 +186,7 @@ public class GameLoop : MonoBehaviour
             //drawTimerView.SetText(timeRemaining);
         }
 
-        BroadcastToPhone(PlayerIdx, "DrawEnd");
+        BroadcastToPhone(PlayerIdx, "wait");
 
         yield break;
     }
@@ -204,12 +200,21 @@ public class GameLoop : MonoBehaviour
         yield break;
     }
 
+    private void BroadcastToOthers(int self, string evt)
+    {
+        for (var i = 0; i < numPlayers; i++)
+        {
+            if (i == self) continue;
+            BroadcastToPhone(i, evt);
+        }
+    }
+
     private void BroadcastToPhone(int playerIdx, string evt)
     {
-
         int deviceId = Devices[playerIdx]; 
         AirConsole.instance.Message(deviceId, evt);
     }
+
     private void BroadcastToPhone(int playerIdx, string evt, object data)
     {
 
