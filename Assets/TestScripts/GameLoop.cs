@@ -137,9 +137,6 @@ public class GameLoop : MonoBehaviour
     {
         Debug.Log("Round Start");
 
-        // Play a random bit of music
-        MusicManager.I.PlayRandom();
-
         // Go to the next painting
         paintingIdx++;
         var idx = paintingIdx % sprites.Count;
@@ -207,6 +204,9 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator CountdownCo()
     {
+        // Play a random bit of music
+        MusicManager.I.PlayRandom();
+
         // Erase previous players drawing
         Painting.ClearLines();
 

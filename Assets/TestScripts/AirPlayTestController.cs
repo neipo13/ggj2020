@@ -87,7 +87,11 @@ public class AirPlayTestController : MonoBehaviour {
             //create a line renderer component
             var lineRenderer = obj.AddComponent<LineRenderer>();
             lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-            lineRenderer.SetWidth(0.05f, 0.05f);
+            //lineRenderer.SetWidth(0.05f, 0.05f);
+
+            // I scaled up the image
+            lineRenderer.SetWidth(0.075f, 0.075f);
+
             Color color;
             ColorUtility.TryParseHtmlString(line.First().color, out color);
             lineRenderer.material.color = color;
