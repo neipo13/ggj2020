@@ -38,7 +38,7 @@ public class GameLoop : MonoBehaviour
     private int PlayerIdx = 0;
     private int numPeopleVoted = 0;
     private Component CurrentView;
-    private int paintingIdx;
+    private int paintingIdx = 0;
 
     public int[] PlayerScores = {0, 0, 0, 0};
 
@@ -104,6 +104,9 @@ public class GameLoop : MonoBehaviour
     {
         Debug.Log("GameLoopCo");
 
+        // Shuffle paintings at the start of each game
+        sprites = Utils.Shuffle(sprites);
+
         for (int round = 0; round < Rounds; round++)
         {
             yield return StartCoroutine(RoundStart());
@@ -128,12 +131,12 @@ public class GameLoop : MonoBehaviour
     {
         Debug.Log("Round Start");
 
-        BroadcastToPlayer(0, "RoundStart");
-
         // Go to the next painting
-        var idx = paintingIdx % sprites.Count;
         paintingIdx++;
-        Painting.SetSprite(sprites[idx]);
+        var idx = paintingIdx % sprites.Count;
+        var sprite = sprites[idx];
+        Painting.SetSprite(sprite);
+        BroadcastToAll(new RoundStartData(sprite.name + ".png"));
 
         // Show painting object
         Painting.gameObject.SetActive(true);
@@ -270,9 +273,18 @@ public class GameLoop : MonoBehaviour
         }
     }
 
-    private void BroadcastToPhone(int playerIdx, string evt, object data)
+    private void BroadcastToPlayer(int playerIdx, object obj)
     {
+        int deviceId = Devices[playerIdx];
+        AirConsole.instance.Message(deviceId, obj);
+    }
 
+    private void BroadcastToAll(object obj)
+    {
+        for(var i = 0; i < numPlayers; i++)
+        {
+            BroadcastToPlayer(i, obj);
+        }
     }
 
     private void SetView(Component component)

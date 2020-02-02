@@ -1373,6 +1373,34 @@ MonoBehaviour:
   drawTimerView: {fileID: 1028268690}
   sprites:
   - {fileID: 21300000, guid: 10a762256412c1e48a59e52bc48b3371, type: 3}
+  - {fileID: 21300000, guid: de9b3b29344244c3d845db1dcd466ab6, type: 3}
+  - {fileID: 21300000, guid: 9d6deaea42f8d4d49a855585a6ce7ce3, type: 3}
+  - {fileID: 21300000, guid: 94f312bd2c47748d5b093ee1b7fb0a3d, type: 3}
+  - {fileID: 21300000, guid: 1219bc0520e2142259dd043aef8fbdde, type: 3}
+  - {fileID: 21300000, guid: d8af319cad9aa43c8b8e1684ec811569, type: 3}
+  - {fileID: 21300000, guid: 8af5a135ffe4f469cb9069c0a2c80bbf, type: 3}
+  - {fileID: 21300000, guid: 519550048872e4df0b2b8d536f60cb52, type: 3}
+  - {fileID: 21300000, guid: 5eee9363a293442349ef56127287db9e, type: 3}
+  - {fileID: 21300000, guid: c860db06dae854be4bc7bb20350cea85, type: 3}
+  - {fileID: 21300000, guid: f372ddbc2832541a0a9ca62ce21782c2, type: 3}
+  - {fileID: 21300000, guid: 8c4feee8411604903a3b3cbe843bf456, type: 3}
+  - {fileID: 21300000, guid: ce2e296ee230c4908966fbc09a0aeaf4, type: 3}
+  - {fileID: 21300000, guid: a883a4db19ac048c9b809b6566052c5a, type: 3}
+  - {fileID: 21300000, guid: 1e162517c42e644808cd90e875a7eb0e, type: 3}
+  - {fileID: 21300000, guid: 793bd28e55fe948b480c1800ee50e40f, type: 3}
+  - {fileID: 21300000, guid: 57f0d5d29267e400b91e85940d0ac8ab, type: 3}
+  - {fileID: 21300000, guid: 77cbcf882b6bc4832ac7bdc0dfe93bc1, type: 3}
+  - {fileID: 21300000, guid: 0c6e48132c6cc4af6a8de6ac28f502e9, type: 3}
+  - {fileID: 21300000, guid: a58eae3858d2b4e0790560eb9690b29a, type: 3}
+  - {fileID: 21300000, guid: 8bdb10ec38ee04215824faac81002849, type: 3}
+  - {fileID: 21300000, guid: be5cfe6804f2d4c9295c2bc048fe4534, type: 3}
+  - {fileID: 21300000, guid: a892b02233dc641aab69987bdc98756f, type: 3}
+  - {fileID: 21300000, guid: e30abc9f7bbf7458a818a351b9dd54f1, type: 3}
+  - {fileID: 21300000, guid: aa1a494d6b82142babeb4b9549264460, type: 3}
+  - {fileID: 21300000, guid: 9da4cec1366d24e3bb39da4510194683, type: 3}
+  - {fileID: 21300000, guid: 5153fee06ff9945c9a105e268ee9cc64, type: 3}
+  - {fileID: 21300000, guid: 0df0712765eca4e3ca9e612f81c85ebf, type: 3}
+  - {fileID: 21300000, guid: b66de61100f2b460ab12d0476384a814, type: 3}
   Painting: {fileID: 1137488640}
   Devices: 
   DrawingRoundDuration: 60

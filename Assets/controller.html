@@ -287,26 +287,27 @@
 
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
+        console.log("data action is: " + data['action']);
         if (data === 'DrawStart') {
             drawingElement.classList.remove("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if (data == 'wait') {
+        else if (data === 'wait') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.remove("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if (data == 'vote') {
+        else if (data === 'vote') {
             drawingElement.classList.add("hidden");
             votingElement.classList.remove("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if (data == 'win') {
+        else if (data === 'win') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
@@ -314,7 +315,7 @@
             winTextElement.innerText = "Winner!";
             paintData = new Array();
         }
-        else if (data == 'lose') {
+        else if (data === 'lose') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
@@ -322,7 +323,10 @@
             winTextElement.innerText = "Loser :(";
             paintData = new Array();
         }
-
+        else if (data.action === 'round_start') {
+            console.log("got round start msg");
+            image.src = data.painting;
+        }
     };
 
 
