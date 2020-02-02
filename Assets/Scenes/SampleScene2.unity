@@ -1454,7 +1454,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b66de61100f2b460ab12d0476384a814, type: 3}
   Painting: {fileID: 1137488640}
   Devices: 
-  DrawingRoundDuration: 4
+  DrawingRoundDuration: 60
   numPlayers: 2
   numRounds: 4
   CountdownDuration: 4
