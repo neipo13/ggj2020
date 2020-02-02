@@ -5,7 +5,7 @@
     <title>Create HTML5 Canvas JavaScript Drawing App Example</title>
 </head>
 
-<body>
+<body style="background-color: white;">
     <div id="draw" class="hidden">
         <div id="canvasDiv"></div>
         <div style="display:none;">
@@ -312,7 +312,7 @@
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
             winTextElement.innerText = "Winner!";
-
+            paintData = new Array();
         }
         else if (data == 'lose') {
             drawingElement.classList.add("hidden");
@@ -320,6 +320,7 @@
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
             winTextElement.innerText = "Loser :(";
+            paintData = new Array();
         }
 
     };

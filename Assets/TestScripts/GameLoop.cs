@@ -25,7 +25,7 @@ public class GameLoop : MonoBehaviour
 
     public List<int> Devices = new List<int>();
 
-    public float DrawingRoundDuration = 90;
+    public float DrawingRoundDuration = 100000f;
     public int numPlayers = 2;
     public int numRounds = 4;
     public float CountdownDuration = 4f;
@@ -57,9 +57,9 @@ public class GameLoop : MonoBehaviour
     {
         if (data["action"] != null && data["action"].ToString () == "send-vote-data") {
             var vData = JsonConvert.DeserializeObject<VotingData> (data.ToString ());
-            PlayerScores[vData.voteData[0]] += 5;
-            PlayerScores[vData.voteData[1]] += 3;
-            PlayerScores[vData.voteData[2]] += 1;
+            PlayerScores[vData.voteData[0]-1] += 5;
+            PlayerScores[vData.voteData[1]-1] += 3;
+            PlayerScores[vData.voteData[2]-1] += 1;
             numPeopleVoted+=1;
         }
     }
@@ -162,8 +162,8 @@ public class GameLoop : MonoBehaviour
 
         int winningPlayerIdx = SelectWinner();
         voteResultsView.SetText(string.Format("Player {0}  Wins!", winningPlayerIdx));
-        BroadcastToOthers(winningPlayerIdx, "win");
-        BroadcastToPlayer(winningPlayerIdx, "lose");
+        BroadcastToPlayer(winningPlayerIdx, "win");
+        BroadcastToOthers(winningPlayerIdx, "lose");
 
         yield return new WaitForSeconds(voteResultsDuration);
     }
@@ -227,6 +227,7 @@ public class GameLoop : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             timeRemaining -= 1f;
+            Debug.Log(timeRemaining);
             //drawTimerView.SetText(timeRemaining);
         }
 
@@ -238,7 +239,7 @@ public class GameLoop : MonoBehaviour
     private IEnumerator PostDrawingRest()
     {
         //nextPlayerView.Show();
-        //yield return new WaitForSeconds(nextPlayerDuration);
+        // yield return new WaitForSeconds(nextPlayerDuration);
         //nextPlayerView.Hide();
 
         yield break;
