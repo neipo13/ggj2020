@@ -14,6 +14,7 @@ public class GameLoop : MonoBehaviour
     public SplashView splashView;
     public LobbyView lobbyView;
     public CountdownView countdownView;
+    public TimeToVoteView timeToVote;
     public VoteResultsView voteResultsView;
     public DrawTimerView drawTimerView;
 
@@ -158,13 +159,18 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator VoteCo()
     {
+        SetView(timeToVote);
+        Painting.gameObject.SetActive(false);
+
         numPeopleVoted = 0;
         // Put phone client in the vote state
         BroadcastToAll("vote");
-        yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });
+        yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });        
 
         int winningPlayerIdx = SelectWinner();
         voteResultsView.SetText(string.Format("Player {0}  Wins!", winningPlayerIdx));
+        SetView(voteResultsView);
+
         BroadcastToPlayer(winningPlayerIdx, "win");
         BroadcastToOthers(winningPlayerIdx, "lose");
 
@@ -230,7 +236,6 @@ public class GameLoop : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             timeRemaining -= 1f;
-            Debug.Log(timeRemaining);
             drawTimerView.SetTimeRemaining(timeRemaining);
         }
 
