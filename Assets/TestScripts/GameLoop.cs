@@ -170,7 +170,14 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator DrawingTimerCo()
     {
+        //tell phone 
         BroadcastToPhone(PlayerIdx, "DrawStart");
+        //tell everyone else to wait
+        for (var i = 0; i < numPlayers; i++)
+        {
+            if(i == PlayerIdx) continue;
+            BroadcastToPhone(i, "wait");
+        }
 
         float timeRemaining = DrawingRoundDuration;
 
@@ -199,14 +206,13 @@ public class GameLoop : MonoBehaviour
 
     private void BroadcastToPhone(int playerIdx, string evt)
     {
-        var msg = new Dictionary<String, String>();
 
-        int deviceId = Devices[playerIdx];
+        int deviceId = Devices[playerIdx]; 
+        AirConsole.instance.Message(deviceId, evt);
+    }
+    private void BroadcastToPhone(int playerIdx, string evt, object data)
+    {
 
-        msg["event"] = evt;
-
-        string data = JsonConvert.SerializeObject(msg);   
-        AirConsole.instance.Message(deviceId, data);
     }
 
     private void SetView(Component component)

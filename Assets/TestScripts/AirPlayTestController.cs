@@ -9,6 +9,7 @@ using UnityEngine;
 public class AirPlayTestController : MonoBehaviour {
 
     public Transform LineRendererParent;
+    public GameLoop gameLoop;
 
     void Awake () {
         AirConsole.instance.onMessage += OnMessage;

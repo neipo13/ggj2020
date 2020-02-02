@@ -41,7 +41,7 @@
         <h1>Waiting</h1>
     </div>
 
-    <div id="vote">
+    <div id="vote" class="hidden">
         <div class="section">
             <p class="headings">First Place</p>
             <button id="v-1-1" class="Oval-1" type="button" name="button" onclick="vote(1, 1)">1</button>
@@ -287,7 +287,7 @@
 
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
-        if (data.action === 'draw') {
+        if (data === 'DrawStart') {
             drawingElement.classList.remove("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
@@ -298,7 +298,6 @@
             votingElement.classList.add("hidden");
             waitingElement.classList.remove("hidden");
             winLoseElement.classList.add("hidden");
-
         }
         else if (data.action == 'vote') {
             drawingElement.classList.add("hidden");
@@ -442,7 +441,7 @@
         me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
     }
 
-    function submitImage() {
+    function clearImage() {
         //do airconsole image submit stuff?
         console.log("sending air console info");
         me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
