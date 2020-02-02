@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NDream.AirConsole;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class GameLoop : MonoBehaviour
@@ -12,6 +13,10 @@ public class GameLoop : MonoBehaviour
     public SplashView splashView;
     public LobbyView lobbyView;
     public CountdownView countdownView;
+
+    public List<Sprite> sprites;
+
+    public Painting Painting;
     //public DrawTimerView drawTimerView;
     //public NextPlayerView nextPlayerView;
     //public RoundView roundView;
@@ -29,6 +34,7 @@ public class GameLoop : MonoBehaviour
     private int Round = 0;
     private int PlayerIdx = 0;
     private Component CurrentView;
+    private int paintingIdx;
 
     //public static GameLoop instance;
 
@@ -36,8 +42,14 @@ public class GameLoop : MonoBehaviour
     {
         AirConsole.instance.onConnect += OnPlayerConnect;
         AirConsole.instance.onDisconnect += OnPlayerDisconnect;
+        AirConsole.instance.onMessage += OnMsg;
 
         SetView(splashView);
+    }
+
+    private void OnMsg(int from, JToken data)
+    {
+        
     }
 
     private void OnPlayerDisconnect(int device_id)
@@ -48,6 +60,7 @@ public class GameLoop : MonoBehaviour
     private void OnPlayerConnect(int device_id)
     {
         Devices.Add(device_id);
+        Debug.Log(Devices.Count + " players connected");
 
         if (Devices.Count >= numPlayers)
             StartCoroutine(StartGame());
@@ -99,7 +112,18 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator RoundStart()
     {
+        Debug.Log("Round Start");
+
         BroadcastToPhone(0, "RoundStart");
+
+        // Go to the next painting
+        var idx = paintingIdx % sprites.Count;
+        paintingIdx++;
+        Painting.SetSprite(sprites[idx]);
+
+        // Show painting object
+        Painting.gameObject.SetActive(true);
+
         //roundView.SetText("Round " + (Round + 1));
         //roundView.Show();
         yield return new WaitForSeconds(1f);
@@ -122,6 +146,9 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator CountdownCo()
     {
+        // Erase previous players drawing
+        Painting.ClearLines();
+
         countdownView.SetText("");
         SetView(countdownView);
 

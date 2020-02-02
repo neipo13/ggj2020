@@ -6,63 +6,72 @@
 </head>
 
 <body>
-    <div id="draw" class="hidden"> 
+    <div id="draw" class="hidden">
         <div id="canvasDiv"></div>
         <div style="display:none;">
-            <img id="source"
-                src="Mona_Lisa-1503-Leonardo_daVinci.png"
-                width="375" height="517">
+            <img id="source" src="Mona_Lisa-1503-Leonardo_daVinci.png" width="375" height="517">
         </div>
         <div class='p-block'>
             <div>
-                <input type="button" style="background-color:#ff0000;" class="p-button" onclick="changeColor('#ff0000')">
-                <input type="button" style="background-color:#d49453;" class="p-button" onclick="changeColor('#d49453')">
-                <input type="button" style="background-color:#fff948;" class="p-button" onclick="changeColor('#fff948')">
-                <input type="button" style="background-color:#ffffff; " class="p-button" onclick="changeColor('#ffffff')">
+                <input type="button" style="background-color:#ff0000;" class="p-button"
+                    onclick="changeColor('#ff0000')">
+                <input type="button" style="background-color:#d49453;" class="p-button"
+                    onclick="changeColor('#d49453')">
+                <input type="button" style="background-color:#fff948;" class="p-button"
+                    onclick="changeColor('#fff948')">
+                <input type="button" style="background-color:#ffffff; " class="p-button"
+                    onclick="changeColor('#ffffff')">
                 <input type="button" class="p-button">
             </div>
             <div>
-                <input type="button" style="background-color:#19b721;" class="p-button" onclick="changeColor('#19b721')">
-                <input type="button" style="background-color:#0082ff;" class="p-button" onclick="changeColor('#0082ff')">
-                <input type="button" style="background-color:#b104d2;" class="p-button" onclick="changeColor('#b104d2')">
-                <input type="button" style="background-color:#000000; " class="p-button" onclick="changeColor('#000000')">
+                <input type="button" style="background-color:#19b721;" class="p-button"
+                    onclick="changeColor('#19b721')">
+                <input type="button" style="background-color:#0082ff;" class="p-button"
+                    onclick="changeColor('#0082ff')">
+                <input type="button" style="background-color:#b104d2;" class="p-button"
+                    onclick="changeColor('#b104d2')">
+                <input type="button" style="background-color:#000000; " class="p-button"
+                    onclick="changeColor('#000000')">
                 <input type="button" class="p-button">
             </div>
         </div>
     </div>
 
     <div id="wait" class="hidden">
-<<<<<<< HEAD
         <h1>Waiting</h1>
     </div>
 
-    <div id="vote" class="hidden">
-        <div>
-            <div>First Place</div>
-            <div>
-                <input type="button" class="v-button" onclick="vote(1, 1)">
-                <input type="button" class="v-button" onclick="vote(1, 2)">
-                <input type="button" class="v-button" onclick="vote(1, 3)">
-                <input type="button" class="v-button" onclick="vote(1, 4)">
-            </div>
+    <div id="vote">
+        <div class="section">
+            <p class="headings">First Place</p>
+            <button id="v-1-1" class="Oval-1" type="button" name="button" onclick="vote(1, 1)">1</button>
+            <button id="v-1-2" class="Oval-2" type="button" name="button" onclick="vote(1, 2)">2</button>
+            <button id="v-1-3" class="Oval-3" type="button" name="button" onclick="vote(1, 3)">3</button>
+            <button id="v-1-4" class="Oval-4" type="button" name="button" onclick="vote(1, 4)">4</button>
         </div>
-=======
-
-    </div>
-
-    <div id="vote" class="hidden">
->>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
-
+        <div class="section">
+            <p class="headings">Second Place</p>
+            <button id="v-2-1" class="Oval-1" type="button" name="button" onclick="vote(2, 1)">1</button>
+            <button id="v-2-2" class="Oval-2" type="button" name="button" onclick="vote(2, 2)">2</button>
+            <button id="v-2-3" class="Oval-3" type="button" name="button" onclick="vote(2, 3)">3</button>
+            <button id="v-2-4" class="Oval-4" type="button" name="button" onclick="vote(2, 4)">4</button>
+        </div>
+        <div class="section">
+            <p class="headings">Third Place</p>
+            <button id="v-3-1" class="Oval-1" type="button" name="button" onclick="vote(3, 1)">1</button>
+            <button id="v-3-2" class="Oval-2" type="button" name="button" onclick="vote(3, 2)">2</button>
+            <button id="v-3-3" class="Oval-3" type="button" name="button" onclick="vote(3, 3)">3</button>
+            <button id="v-3-4" class="Oval-4" type="button" name="button" onclick="vote(3, 4)">4</button>
+        </div>
+        <div class="submit-section">
+            <button class="submit" type="button" name="button" onclick="sendVotes()">Submit</button>
+        </div>
     </div>
 
     <div id="winlose" class="hidden">
-<<<<<<< HEAD
         <h1 id="win-text"></h1>
-=======
-
->>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
     </div>
-    
+
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
@@ -75,19 +84,172 @@
     .p-button {
         width: 44px;
         height: 44px;
-        margin-right:22px;
+        margin-right: 22px;
     }
 
     .p-block {
         padding: 19px;
-        border-style:solid;
+        border-style: solid;
         border-color: black;
         border-radius: 2px;
         max-width: 375px;
     }
 
-    .hidden{
-        display: none;;
+    .hidden {
+        display: none;
+    }
+
+    .v-block {
+        padding: 22px;
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .v-button {
+        width: 66px;
+        height: 66px;
+        margin: 8px;
+        border-radius: 50%;
+        background-color: blue;
+        font-family: iAWriterQuattroS;
+        font-size: 36px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+        display: inline-block;
+    }
+
+    .v-header {
+        width: 100%;
+        height: 36px;
+        font-family: Inter;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: 0.5px;
+        text-align: center;
+        color: #8f8e8d;
+    }
+
+    #vote {
+        min-width: 375px;
+        min-height: 667px;
+        max-width: 375px;
+        max-height: 667px;
+    }
+
+    .headings {
+        font-family: sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: #8f8e8d;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .Oval-3 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #72c850;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-4 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #15bdf4;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-1 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #ffc539;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-2 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #ff6660;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    button {
+        width: 262px;
+        height: 56px;
+        border-radius: 2px;
+        background-color: #6f6f6f;
+    }
+
+    button:disabled {
+        background-color: #BBBBBB;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    .section {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+
+    .submit-section {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        margin-top: 40px;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .submit {
+        font-family: sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+
+    .oval-active {
+        box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
     }
 </style>
 
@@ -103,10 +265,8 @@
     var waitingElement = document.getElementById("wait");
     var votingElement = document.getElementById("vote");
     var winLoseElement = document.getElementById("winlose");
-<<<<<<< HEAD
     var winTextElement = document.getElementById("win-text");
-=======
->>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
+    var votes = [-1, -1, -1];
 
     canvas = document.createElement('canvas');
     canvas.setAttribute('width', canvasWidth);
@@ -127,50 +287,40 @@
 
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
-        if(data.action === 'draw'){
+        if (data.action === 'draw') {
             drawingElement.classList.remove("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
         }
-        else if(data.action == 'wait'){
+        else if (data.action == 'wait') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.remove("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if(data.action == 'vote'){
+        else if (data.action == 'vote') {
             drawingElement.classList.add("hidden");
             votingElement.classList.remove("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.add("hidden");
 
         }
-        else if(data.action == 'win'){
+        else if (data.action == 'win') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
-<<<<<<< HEAD
-            winTextElement.innerText="Winner!";
+            winTextElement.innerText = "Winner!";
 
         }
-        else if(data.action == 'lose'){
+        else if (data.action == 'lose') {
             drawingElement.classList.add("hidden");
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
-            winTextElement.innerText="Loser :(";
-=======
-
-        }
-        else if(data.action == 'lose'){
-            drawingElement.classList.remove("hidden");
-            votingElement.classList.add("hidden");
-            waitingElement.classList.add("hidden");
-            winLoseElement.classList.remove("hidden");
->>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
+            winTextElement.innerText = "Loser :(";
         }
 
     };
@@ -231,6 +381,43 @@
             size: 5
         };
         paintData.push(data);
+    }
+
+    function vote(place, player) {
+        console.log(place, player);
+        votes[place - 1] = player;
+        var row = [1, 2, 3];
+        var col = [1, 2, 3, 4];
+        row = row.filter((value) => value != place);
+        col = col.filter((value) => value != player);
+        for (var i = 0; i < col.length; i++) {
+            //grab the element & remove the button-active class
+            var element = document.getElementById("v-" + place + '-' + col[i]);
+            var isActive = element.classList.contains("oval-active");
+            if (isActive) {
+                // if it had active, then remove disabled on all the cols of the same row#
+                element.classList.remove("oval-active");
+                for (var k = 0; k < row.length; k++) {
+                    var element2 = document.getElementById("v-" + row[k] + '-' + col[i]);
+                    element2.removeAttribute('disabled');
+                }
+            }
+        }
+        for (var j = 0; j < row.length; j++) {
+            //disable
+            var element3 = document.getElementById("v-" + row[j] + '-' + player);
+            element3.setAttribute("disabled", true);
+        }
+
+        console.log(place, player);
+        var thisElement = document.getElementById("v-" + place + '-' + player);
+        thisElement.classList.add("oval-active");
+    }
+
+    function sendVotes() {
+        if (votes[0] > -1 && votes[1] > -1 && votes[2] > -1) {
+            me.airconsole.message(AirConsole.SCREEN, { "action": "send-vote-data", "vote-data": votes });
+        }
     }
 
     function redraw() {
