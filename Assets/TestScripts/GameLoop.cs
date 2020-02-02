@@ -265,7 +265,7 @@ public class GameLoop : MonoBehaviour
     {
         for(var i = 0; i < numPlayers; i++)
         {
-            BroadcastToPlayer(Devices[i], evt);
+            BroadcastToPlayer(i, evt);
         }
     }
 
