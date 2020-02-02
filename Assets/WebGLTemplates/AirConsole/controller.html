@@ -32,6 +32,7 @@
     </div>
 
     <div id="wait" class="hidden">
+<<<<<<< HEAD
         <h1>Waiting</h1>
     </div>
 
@@ -45,11 +46,21 @@
                 <input type="button" class="v-button" onclick="vote(1, 4)">
             </div>
         </div>
+=======
+
+    </div>
+
+    <div id="vote" class="hidden">
+>>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
 
     </div>
 
     <div id="winlose" class="hidden">
+<<<<<<< HEAD
         <h1 id="win-text"></h1>
+=======
+
+>>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
     </div>
     
 
@@ -92,7 +103,10 @@
     var waitingElement = document.getElementById("wait");
     var votingElement = document.getElementById("vote");
     var winLoseElement = document.getElementById("winlose");
+<<<<<<< HEAD
     var winTextElement = document.getElementById("win-text");
+=======
+>>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
 
     canvas = document.createElement('canvas');
     canvas.setAttribute('width', canvasWidth);
@@ -138,6 +152,7 @@
             votingElement.classList.add("hidden");
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
+<<<<<<< HEAD
             winTextElement.innerText="Winner!";
 
         }
@@ -147,6 +162,15 @@
             waitingElement.classList.add("hidden");
             winLoseElement.classList.remove("hidden");
             winTextElement.innerText="Loser :(";
+=======
+
+        }
+        else if(data.action == 'lose'){
+            drawingElement.classList.remove("hidden");
+            votingElement.classList.add("hidden");
+            waitingElement.classList.add("hidden");
+            winLoseElement.classList.remove("hidden");
+>>>>>>> 5524107bd38aa06f61ba0d0fec46b5de9b5145b9
         }
 
     };

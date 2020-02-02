@@ -42,37 +42,30 @@
     </div>
 
     <div id="vote">
-        <div>
-            <div class="v-header">First Place</div>
-            <div class="v-block">
-                <div type="button" class="v-button" onclick="vote(1, 1)">1</div>
-                <div type="button" class="v-button" onclick="vote(1, 2)">2</div>
-                <div type="button" class="v-button" onclick="vote(1, 3)">3</div>
-                <div type="button" class="v-button" onclick="vote(1, 4)">4</div>
-            </div>
+        <div class="section">
+            <p class="headings">First Place</p>
+            <button id="v-1-1" class="Oval-1" type="button" name="button" onclick="vote(1, 1)">1</button>
+            <button id="v-1-2" class="Oval-2" type="button" name="button" onclick="vote(1, 2)">2</button>
+            <button id="v-1-3" class="Oval-3" type="button" name="button" onclick="vote(1, 3)">3</button>
+            <button id="v-1-4" class="Oval-4" type="button" name="button" onclick="vote(1, 4)">4</button>
         </div>
-        <div>
-            <div class="v-header">Second Place</div>
-            <div class="v-block">
-                <div type="button" class="v-button" onclick="vote(2, 1)">1</div>
-                <div type="button" class="v-button" onclick="vote(2, 2)">2</div>
-                <div type="button" class="v-button" onclick="vote(2, 3)">3</div>
-                <div type="button" class="v-button" onclick="vote(2, 4)">4</div>
-            </div>
+        <div class="section">
+            <p class="headings">Second Place</p>
+            <button id="v-2-1" class="Oval-1" type="button" name="button" onclick="vote(2, 1)">1</button>
+            <button id="v-2-2" class="Oval-2" type="button" name="button" onclick="vote(2, 2)">2</button>
+            <button id="v-2-3" class="Oval-3" type="button" name="button" onclick="vote(2, 3)">3</button>
+            <button id="v-2-4" class="Oval-4" type="button" name="button" onclick="vote(2, 4)">4</button>
         </div>
-        <div>
-            <div class="v-header">Third Place</div>
-            <div class="v-block">
-                <div type="button" class="v-button" onclick="vote(2, 1)">1</div>
-                <div type="button" class="v-button" onclick="vote(2, 2)">2</div>
-                <div type="button" class="v-button" onclick="vote(2, 3)">3</div>
-                <div type="button" class="v-button" onclick="vote(2, 4)">4</div>
-            </div>
+        <div class="section">
+            <p class="headings">Third Place</p>
+            <button id="v-3-1" class="Oval-1" type="button" name="button" onclick="vote(3, 1)">1</button>
+            <button id="v-3-2" class="Oval-2" type="button" name="button" onclick="vote(3, 2)">2</button>
+            <button id="v-3-3" class="Oval-3" type="button" name="button" onclick="vote(3, 3)">3</button>
+            <button id="v-3-4" class="Oval-4" type="button" name="button" onclick="vote(3, 4)">4</button>
         </div>
-        <div>
-            <div class="button" type="button" onclick="sendVotes()"> Submit Votes</div>
+        <div class="submit-section">
+            <button class="submit" type="button" name="button" onclick="sendVotes()">Submit</button>
         </div>
-
     </div>
 
     <div id="winlose" class="hidden">
@@ -151,20 +144,112 @@
         max-height: 667px;
     }
 
-    .button {
+    .headings {
+        font-family: sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        color: #8f8e8d;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .Oval-3 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #72c850;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-4 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #15bdf4;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-1 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #ffc539;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .Oval-2 {
+        width: 66px;
+        height: 66px;
+        border-radius: 33px;
+        background-color: #ff6660;
+        font-family: sans-serif;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    button {
         width: 262px;
         height: 56px;
         border-radius: 2px;
         background-color: #6f6f6f;
-        font-family: Inter;
-        font-size: 16px;
+    }
+
+    button:disabled {
+        background-color: #BBBBBB;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    .section {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+    }
+
+    .submit-section {
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        margin-top: 40px;
+        font-family: sans-serif;
+        font-size: 36px;
         font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1;
-        letter-spacing: normal;
+        letter-spacing: 0.6px;
         text-align: center;
         color: #ffffff;
+    }
+
+    .submit {
+        font-family: sans-serif;
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 0.6px;
+        text-align: center;
+        color: #ffffff;
+        text-transform: uppercase;
+        border-radius: 5px;
+    }
+
+    .oval-active {
+        box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
     }
 </style>
 
@@ -298,12 +383,39 @@
         paintData.push(data);
     }
 
-    function vote(place, player){
-        votes[place-1]=player;
+    function vote(place, player) {
+        console.log(place, player);
+        votes[place - 1] = player;
+        var row = [1, 2, 3];
+        var col = [1, 2, 3, 4];
+        row = row.filter((value) => value != place);
+        col = col.filter((value) => value != player);
+        for (var i = 0; i < col.length; i++) {
+            //grab the element & remove the button-active class
+            var element = document.getElementById("v-" + place + '-' + col[i]);
+            var isActive = element.classList.contains("oval-active");
+            if (isActive) {
+                // if it had active, then remove disabled on all the cols of the same row#
+                element.classList.remove("oval-active");
+                for (var k = 0; k < row.length; k++) {
+                    var element2 = document.getElementById("v-" + row[k] + '-' + col[i]);
+                    element2.removeAttribute('disabled');
+                }
+            }
+        }
+        for (var j = 0; j < row.length; j++) {
+            //disable
+            var element3 = document.getElementById("v-" + row[j] + '-' + player);
+            element3.setAttribute("disabled", true);
+        }
+
+        console.log(place, player);
+        var thisElement = document.getElementById("v-" + place + '-' + player);
+        thisElement.classList.add("oval-active");
     }
 
-    function sendVotes(){
-        if(votes[0] > -1 && votes[1] > -1 && votes[2] > -1){
+    function sendVotes() {
+        if (votes[0] > -1 && votes[1] > -1 && votes[2] > -1) {
             me.airconsole.message(AirConsole.SCREEN, { "action": "send-vote-data", "vote-data": votes });
         }
     }
