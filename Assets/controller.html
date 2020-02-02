@@ -3,6 +3,7 @@
 
 <head>
     <title>Create HTML5 Canvas JavaScript Drawing App Example</title>
+    <link rel="stylesheet" href="animate.css">
 </head>
 
 <body style="background-color: white;">
@@ -37,8 +38,10 @@
         </div>
     </div>
 
-    <div id="wait" class="hidden">
-        <h1>Waiting</h1>
+    <div id="wait" class="hidden wait-page">
+      <div class="wait-section">
+        <h1 class="animated infinite bounce">Waiting</h1>
+      </div>
     </div>
 
     <div id="vote" class="hidden">
@@ -72,6 +75,13 @@
         <h1 id="win-text"></h1>
     </div>
 
+<!--     <div id="winlose" class="hidden lose-page">
+      <div class="lose-section">
+        <p class="big-emoji" role="image" aria-label="hamburger">🎉</p>
+        <h1 id="win-text"></h1>
+      </div>
+    </body> -->
+
 
     <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
@@ -81,6 +91,8 @@
 </html>
 
 <style>
+    body { margin: 0; padding: 0; }
+
     .p-button {
         width: 44px;
         height: 44px;
@@ -251,6 +263,40 @@
     .oval-active {
         box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
     }
+
+    h1 {
+      font-size: 36px;
+      font-family: sans-serif;
+      text-transform: uppercase;
+      text-align: center;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    .wait-page {
+        position: fixed;
+        background-color: black;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .wait-section {
+      margin-top: 50%;
+    }
+
+    /*WIN PAGE*/
+
+    .win-page {
+        background-color: black;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .win-section {
+      margin-top: 50%;
+      text-align: center;
+}
 </style>
 
 <script>
