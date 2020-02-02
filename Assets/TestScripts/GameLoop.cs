@@ -35,9 +35,9 @@ public class GameLoop : MonoBehaviour
     public float nextRoundDuration = 2f;
     public float voteResultsDuration = 3f;
     public float endOfMatchDuration = 5f;
+    public float splashHoldDuration = 10f;
 
     // State vars
-    private int Round = 0;
     private int PlayerIdx = 0;
     private int numPeopleVoted = 0;
     private Component CurrentView;
@@ -53,7 +53,7 @@ public class GameLoop : MonoBehaviour
         AirConsole.instance.onDisconnect += OnPlayerDisconnect;
         AirConsole.instance.onMessage += OnMsg;
 
-        SetView(splashView);
+        StartCoroutine(StartGame());
     }
 
     private void Start()
@@ -98,14 +98,25 @@ public class GameLoop : MonoBehaviour
     {
         Debug.Log("Waiting for players to connect");
         SetView(lobbyView);
-        yield return new WaitUntil(() => Devices.Count >= numPlayers);
+
+        while(true)
+        {
+            yield return new WaitForEndOfFrame();
+
+            lobbyView.SetText(string.Format("Waiting for {0} more players...", numPlayers - Devices.Count));
+
+            if (Devices.Count >= numPlayers)
+                break;
+        }
+
         Debug.Log("All players connected");
         SetView(null);
     }
 
     private IEnumerator SplashCo()
     {
-        yield return new WaitForSeconds(5f);
+        SetView(splashView);
+        yield return new WaitForSeconds(splashHoldDuration);
         yield break;
     }
 
@@ -167,6 +178,8 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator VoteCo()
     {
+        MusicManager.I.PlayMurmur();
+
         SetView(timeToVote);
         Painting.gameObject.SetActive(false);
 
