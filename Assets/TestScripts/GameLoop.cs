@@ -14,6 +14,7 @@ public class GameLoop : MonoBehaviour
     public SplashView splashView;
     public LobbyView lobbyView;
     public CountdownView countdownView;
+    public VoteResultsView voteResultsView;
 
     public List<Sprite> sprites;
 
@@ -30,6 +31,7 @@ public class GameLoop : MonoBehaviour
     public float CountdownDuration = 4f;
     public float nextPlayerDuration = 2f;
     public float nextRoundDuration = 2f;
+    public float voteResultsDuration = 3f;
 
     // State vars
     private int Round = 0;
@@ -126,7 +128,7 @@ public class GameLoop : MonoBehaviour
     {
         Debug.Log("Round Start");
 
-        BroadcastToPhone(0, "RoundStart");
+        BroadcastToPlayer(0, "RoundStart");
 
         // Go to the next painting
         var idx = paintingIdx % sprites.Count;
@@ -157,6 +159,13 @@ public class GameLoop : MonoBehaviour
         // Put phone client in the vote state
         BroadcastToAll("vote");
         yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });
+
+        int winningPlayerIdx = SelectWinner();
+        voteResultsView.SetText(string.Format("Player {0}  Wins!", winningPlayerIdx));
+        BroadcastToOthers(winningPlayerIdx, "win");
+        BroadcastToPlayer(winningPlayerIdx, "lose");
+
+        yield return new WaitForSeconds(voteResultsDuration);
     }
 
     private int SelectWinner()
@@ -206,7 +215,7 @@ public class GameLoop : MonoBehaviour
     private IEnumerator DrawingTimerCo()
     {
         //tell phone 
-        BroadcastToPhone(PlayerIdx, "DrawStart");
+        BroadcastToPlayer(PlayerIdx, "DrawStart");
         //tell everyone else to wait
         BroadcastToOthers(PlayerIdx, "wait");
 
@@ -221,7 +230,7 @@ public class GameLoop : MonoBehaviour
             //drawTimerView.SetText(timeRemaining);
         }
 
-        BroadcastToPhone(PlayerIdx, "wait");
+        BroadcastToPlayer(PlayerIdx, "wait");
 
         yield break;
     }
@@ -240,11 +249,11 @@ public class GameLoop : MonoBehaviour
         for (var i = 0; i < numPlayers; i++)
         {
             if (i == self) continue;
-            BroadcastToPhone(i, evt);
+            BroadcastToPlayer(i, evt);
         }
     }
 
-    private void BroadcastToPhone(int playerIdx, string evt)
+    private void BroadcastToPlayer(int playerIdx, string evt)
     {
         int deviceId = Devices[playerIdx]; 
         AirConsole.instance.Message(deviceId, evt);
@@ -254,7 +263,7 @@ public class GameLoop : MonoBehaviour
     {
         for(var i = 0; i < numPlayers; i++)
         {
-            BroadcastToPhone(Devices[i], evt);
+            BroadcastToPlayer(i, evt);
         }
     }
 
