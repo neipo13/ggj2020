@@ -11,7 +11,7 @@ public class GameLoop : MonoBehaviour
 
     public SplashView splashView;
     public LobbyView lobbyView;
-    //public CountdownView countdownView;
+    public CountdownView countdownView;
     //public DrawTimerView drawTimerView;
     //public NextPlayerView nextPlayerView;
     //public RoundView roundView;
@@ -66,6 +66,7 @@ public class GameLoop : MonoBehaviour
         SetView(lobbyView);
         yield return new WaitUntil(() => Devices.Count >= numPlayers);
         Debug.Log("All players connected");
+        SetView(null);
     }
 
     private IEnumerator SplashCo()
@@ -121,22 +122,21 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator CountdownCo()
     {
-        //countdownView.SetText("");
-        //countdownView.gameObject.SetActive(true);
-
+        countdownView.SetText("");
+        SetView(countdownView);
 
         float timeRemaining = CountdownDuration;
         while (timeRemaining > 0)
         {
             float time = timeRemaining - 1f;
-            //countdownView.SetText(time > 0 ? time.ToString() : "Go!");
+            countdownView.SetText(time > 0 ? time.ToString() : "Go!");
             yield return new WaitForSeconds(1f);
             timeRemaining -= 1f;
             Debug.Log("tr: " + timeRemaining);
         }
 
-        //countdownView.SetText("");
-        //countdownView.gameObject.SetActive(false);
+        countdownView.SetText("");
+        SetView(null);
 
         yield break;
     }

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class ViewBase : MonoBehaviour
 {
+    private Animator _animator;
+    public Animator animator {
+        get {
+            if (_animator == null)
+                _animator = GetComponent<Animator>();
+            return _animator;
+        }
+    }
+
     public void Show()
     {
         this.gameObject.SetActive(true);

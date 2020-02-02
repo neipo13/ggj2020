@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SplashView : MonoBehaviour
+public class SplashView : ViewBase
 {
     // Start is called before the first frame update
     void Start()
