@@ -5,6 +5,7 @@ using NDream.AirConsole;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using System.Linq;
 
 public class GameLoop : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class GameLoop : MonoBehaviour
     private Component CurrentView;
     private int paintingIdx;
 
+    public int[] PlayerScores = {0, 0, 0, 0};
+
     //public static GameLoop instance;
 
     private void Awake()
@@ -50,7 +53,13 @@ public class GameLoop : MonoBehaviour
 
     private void OnMsg(int from, JToken data)
     {
-        
+        if (data["action"] != null && data["action"].ToString () == "send-vote-data") {
+            var vData = JsonConvert.DeserializeObject<VotingData> (data.ToString ());
+            PlayerScores[vData.voteData[0]] += 5;
+            PlayerScores[vData.voteData[1]] += 3;
+            PlayerScores[vData.voteData[2]] += 1;
+            numPeopleVoted+=1;
+        }
     }
 
     private void OnPlayerDisconnect(int device_id)
@@ -148,6 +157,23 @@ public class GameLoop : MonoBehaviour
         // Put phone client in the vote state
         BroadcastToAll("vote");
         yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });
+    }
+
+    private int SelectWinner()
+    {
+        int maxScore = 0;
+        int winningPlayerId = 0;
+        for(int i = 0; i < PlayerScores.Length; i++){
+            if(PlayerScores[i] > maxScore  ||
+                (PlayerScores[i] == maxScore && UnityEngine.Random.RandomRange(0, 2) > 0))
+            {
+
+                maxScore = PlayerScores[i];
+                winningPlayerId = i;
+
+            }
+        }
+        return winningPlayerId;
     }
 
     private IEnumerator PlayAgain()
