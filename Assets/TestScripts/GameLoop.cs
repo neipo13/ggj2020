@@ -81,9 +81,6 @@ public class GameLoop : MonoBehaviour
     {
         Devices.Add(device_id);
         Debug.Log(Devices.Count + " players connected");
-
-        if (Devices.Count >= numPlayers)
-            StartCoroutine(StartGame());
     }
 
     internal IEnumerator StartGame()
