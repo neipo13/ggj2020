@@ -18,3 +18,7 @@ public class ImageData
     public string color {get;set;}
     public float size {get;set;}
 }
+
+public class SimpleMessage{
+    public string action {get;set;}
+}

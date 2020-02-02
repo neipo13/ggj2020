@@ -14,6 +14,26 @@ public class AirPlayTestController : MonoBehaviour {
         AirConsole.instance.onMessage += OnMessage;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Debug.Log("sending draw");
+            AirConsole.instance.Message(1, new SimpleMessage{action="draw"});
+            AirConsole.instance.Message(2, new SimpleMessage{action="wait"});
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            AirConsole.instance.Message(1, new SimpleMessage{action="win"});
+            AirConsole.instance.Message(2, new SimpleMessage{action="lose"});
+        }
+        else if (Input.GetKeyDown(KeyCode.V))
+        {
+            AirConsole.instance.Message(1, new SimpleMessage{action="vote"});
+            AirConsole.instance.Message(2, new SimpleMessage{action="vote"});
+        }
+    }
+
     List<GameObject> lineObjs = new List<GameObject>();
 
     void OnMessage (int from, JToken message) {
