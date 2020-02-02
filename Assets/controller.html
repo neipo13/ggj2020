@@ -371,6 +371,7 @@
         }
         else if (data.action === 'round_start') {
             console.log("got round start msg");
+            resetVotes();
             image.src = data.painting;
         }
     };
@@ -431,6 +432,20 @@
             size: 5
         };
         paintData.push(data);
+    }
+
+    function resetVotes()
+    {
+        var row = [1, 2, 3];
+        var col = [1, 2, 3, 4];
+
+        for (var j = 0; j < row.length; j++) {
+            for (var i = 0; i < col.length; i++) {
+                //grab the element & remove the button-active class
+                var element = document.getElementById("v-" + row[j] + '-' + col[i]);
+                element.removeAttribute('disabled');
+            }
+        }
     }
 
     function vote(place, player) {

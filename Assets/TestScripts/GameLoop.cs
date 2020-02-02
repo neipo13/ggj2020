@@ -17,6 +17,7 @@ public class GameLoop : MonoBehaviour
     public TimeToVoteView timeToVote;
     public VoteResultsView voteResultsView;
     public DrawTimerView drawTimerView;
+    public EndOfMatch endOfMatch;
 
     public List<Sprite> sprites;
 
@@ -33,6 +34,7 @@ public class GameLoop : MonoBehaviour
     public float nextPlayerDuration = 2f;
     public float nextRoundDuration = 2f;
     public float voteResultsDuration = 3f;
+    public float endOfMatchDuration = 5f;
 
     // State vars
     private int Round = 0;
@@ -88,7 +90,8 @@ public class GameLoop : MonoBehaviour
     {
         yield return StartCoroutine(SplashCo());
         yield return StartCoroutine(LobbyCo());
-        yield return StartCoroutine(GameLoopCo());
+        while(true)
+            yield return StartCoroutine(GameLoopCo());
     }
 
     private IEnumerator LobbyCo()
@@ -199,7 +202,8 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator PlayAgain()
     {
-        yield break;
+        SetView(endOfMatch);
+        yield return new WaitForSeconds(endOfMatchDuration);
     }
 
     private IEnumerator CountdownCo()
