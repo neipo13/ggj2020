@@ -165,7 +165,7 @@ public class GameLoop : MonoBehaviour
         int winningPlayerId = 0;
         for(int i = 0; i < PlayerScores.Length; i++){
             if(PlayerScores[i] > maxScore  ||
-                (PlayerScores[i] == maxScore && UnityEngine.Random.RandomRange(0, 2) > 0))
+                (PlayerScores[i] == maxScore && UnityEngine.Random.Range(0, 2) > 0))
             {
 
                 maxScore = PlayerScores[i];
