@@ -54,6 +54,11 @@ public class GameLoop : MonoBehaviour
         SetView(splashView);
     }
 
+    private void Start()
+    {
+        MusicManager.I.PlayRandom();
+    }
+
     private void OnMsg(int from, JToken data)
     {
         if (data["action"] != null && data["action"].ToString () == "send-vote-data") {
@@ -131,6 +136,9 @@ public class GameLoop : MonoBehaviour
     private IEnumerator RoundStart()
     {
         Debug.Log("Round Start");
+
+        // Play a random bit of music
+        MusicManager.I.PlayRandom();
 
         // Go to the next painting
         paintingIdx++;

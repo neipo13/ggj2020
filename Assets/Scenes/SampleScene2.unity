@@ -930,6 +930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854472031}
   - component: {fileID: 854472030}
+  - component: {fileID: 854472032}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -947,11 +948,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a8df2d073cc1b449ab10554bef58c47c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: adb0601fb360c4da2bb1d58301e30c4c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1047,6 +1048,25 @@ Transform:
   m_Father: {fileID: 519420032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854472032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854472029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73859eba1a01f4e9d9ce376244198b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Source: {fileID: 854472030}
+  Clips:
+  - {fileID: 8300000, guid: 91fbef0d85eb2419497b20fb0e12de35, type: 3}
+  - {fileID: 8300000, guid: 6b5a962ce255c406b80a5eef84e0dccb, type: 3}
+  - {fileID: 8300000, guid: 59b79a37895f3454cbd1fe1621f2c0c8, type: 3}
+  - {fileID: 8300000, guid: adb0601fb360c4da2bb1d58301e30c4c, type: 3}
+  - {fileID: 8300000, guid: d88f0b3b62acd42e5bb2fd2664e40675, type: 3}
 --- !u!1 &899247467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1602,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b66de61100f2b460ab12d0476384a814, type: 3}
   Painting: {fileID: 1137488640}
   Devices: 
-  DrawingRoundDuration: 2
+  DrawingRoundDuration: 60
   numPlayers: 2
   numRounds: 4
   CountdownDuration: 4
