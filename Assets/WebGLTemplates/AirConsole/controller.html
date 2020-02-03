@@ -381,6 +381,8 @@
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
 
+        me.airconsole.message(AirConsole.SCREEN, { "action": "new-stroke" });
+
         paint = true;
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
         redraw();
@@ -418,6 +420,7 @@
         paint = false;
     });
     var paint;
+    var currentPaintData;
 
     function changeColor(i) {
         colorSelected = i;
@@ -432,6 +435,8 @@
             size: 5
         };
         paintData.push(data);
+
+        me.airconsole.message(AirConsole.SCREEN, { "action": "send-stroke-data", "stroke-data": data });
     }
 
     function resetVotes()
@@ -504,7 +509,7 @@
             context.closePath();
             context.stroke();
         }
-        me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
+        // me.airconsole.message(AirConsole.SCREEN, { "action": "send-image-data", "image-data": paintData });
     }
 
     function clearImage() {

@@ -1224,19 +1224,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854472029}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73859eba1a01f4e9d9ce376244198b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Source: {fileID: 854472030}
   Clips:
-  - {fileID: 8300000, guid: 91fbef0d85eb2419497b20fb0e12de35, type: 3}
-  - {fileID: 8300000, guid: 6b5a962ce255c406b80a5eef84e0dccb, type: 3}
-  - {fileID: 8300000, guid: 59b79a37895f3454cbd1fe1621f2c0c8, type: 3}
-  - {fileID: 8300000, guid: 2860bea0965f945a1b53b16dc69e805e, type: 3}
-  - {fileID: 8300000, guid: d88f0b3b62acd42e5bb2fd2664e40675, type: 3}
-  MummurClip: {fileID: 8300000, guid: 880c19b11b2f74c4a8f5e05e0db35c7b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MummurClip: {fileID: 0}
 --- !u!1 &899247467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,7 +1767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cb1231838f43ce986c69b6934dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rounds: 4
+  Rounds: 2
   splashView: {fileID: 1215702741}
   lobbyView: {fileID: 779854376}
   countdownView: {fileID: 356449843}
@@ -1791,26 +1791,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ce2e296ee230c4908966fbc09a0aeaf4, type: 3}
   - {fileID: 21300000, guid: a883a4db19ac048c9b809b6566052c5a, type: 3}
   - {fileID: 21300000, guid: 1e162517c42e644808cd90e875a7eb0e, type: 3}
-  - {fileID: 21300000, guid: 793bd28e55fe948b480c1800ee50e40f, type: 3}
-  - {fileID: 21300000, guid: 57f0d5d29267e400b91e85940d0ac8ab, type: 3}
-  - {fileID: 21300000, guid: 77cbcf882b6bc4832ac7bdc0dfe93bc1, type: 3}
-  - {fileID: 21300000, guid: 0c6e48132c6cc4af6a8de6ac28f502e9, type: 3}
-  - {fileID: 21300000, guid: a58eae3858d2b4e0790560eb9690b29a, type: 3}
-  - {fileID: 21300000, guid: 8bdb10ec38ee04215824faac81002849, type: 3}
-  - {fileID: 21300000, guid: be5cfe6804f2d4c9295c2bc048fe4534, type: 3}
-  - {fileID: 21300000, guid: a892b02233dc641aab69987bdc98756f, type: 3}
-  - {fileID: 21300000, guid: e30abc9f7bbf7458a818a351b9dd54f1, type: 3}
-  - {fileID: 21300000, guid: aa1a494d6b82142babeb4b9549264460, type: 3}
-  - {fileID: 21300000, guid: 9da4cec1366d24e3bb39da4510194683, type: 3}
-  - {fileID: 21300000, guid: 5153fee06ff9945c9a105e268ee9cc64, type: 3}
-  - {fileID: 21300000, guid: 0df0712765eca4e3ca9e612f81c85ebf, type: 3}
-  - {fileID: 21300000, guid: b66de61100f2b460ab12d0476384a814, type: 3}
   Painting: {fileID: 1137488640}
   Devices: 
   DrawingRoundDuration: 60
-  numPlayers: 4
+  numPlayers: 2
   numRounds: 2
-  CountdownDuration: 4
+  CountdownDuration: 1
   nextPlayerDuration: 2
   nextRoundDuration: 2
   voteResultsDuration: 3

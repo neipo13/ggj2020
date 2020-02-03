@@ -58,7 +58,7 @@ public class GameLoop : MonoBehaviour
 
     private void Start()
     {
-        MusicManager.I.PlayRandom();
+        //MusicManager.I.PlayRandom();
     }
 
     private void OnMsg(int from, JToken data)
@@ -175,7 +175,7 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator VoteCo()
     {
-        MusicManager.I.PlayMurmur();
+        //MusicManager.I.PlayMurmur();
 
         SetView(timeToVote);
         Painting.gameObject.SetActive(false);
@@ -219,7 +219,7 @@ public class GameLoop : MonoBehaviour
     private IEnumerator CountdownCo()
     {
         // Play a random bit of music
-        MusicManager.I.PlayRandom();
+        //MusicManager.I.PlayRandom();
 
         // Erase previous players drawing
         Painting.ClearLines();
