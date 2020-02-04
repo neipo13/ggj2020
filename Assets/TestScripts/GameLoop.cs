@@ -11,6 +11,8 @@ public class GameLoop : MonoBehaviour
 {
     public int Rounds = 4;
 
+    public AirPlayTestController lineMgr;
+
     public SplashView splashView;
     public LobbyView lobbyView;
     public CountdownView countdownView;
@@ -271,8 +273,9 @@ public class GameLoop : MonoBehaviour
     private IEnumerator PostDrawingRest()
     {
         //nextPlayerView.Show();
-        // yield return new WaitForSeconds(nextPlayerDuration);
+        yield return new WaitForSeconds(nextPlayerDuration);
         //nextPlayerView.Hide();
+        lineMgr.Clear();
 
         yield break;
     }

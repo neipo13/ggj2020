@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 
-public class StrokeData
+public struct StrokeData
 {
-    public float x {get;set;}
-    public float y {get;set;}
-    public bool dragging {get;set;}
-    public string color {get;set;}
-    public float size {get;set;}
+    public float x;
+    public float y;
+    //public bool dragging;
+    public string color;
+    public float size;
 }
