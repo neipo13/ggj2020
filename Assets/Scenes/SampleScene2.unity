@@ -1794,7 +1794,7 @@ MonoBehaviour:
   Painting: {fileID: 1137488640}
   Devices: 
   DrawingRoundDuration: 60
-  numPlayers: 2
+  numPlayers: 4
   numRounds: 2
   CountdownDuration: 1
   nextPlayerDuration: 2

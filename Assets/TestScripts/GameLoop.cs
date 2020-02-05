@@ -317,10 +317,8 @@ public class GameLoop : MonoBehaviour
 
     private void BroadcastToAll(string evt)
     {
-        for(var i = 0; i < numPlayers; i++)
-        {
-            BroadcastToPlayer(i, evt);
-        }
+        foreach(var deviceId in Devices)
+            AirConsole.instance.Message(deviceId, evt);
     }
 
     private void BroadcastToPlayer(int playerIdx, object obj)
