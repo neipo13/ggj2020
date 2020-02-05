@@ -20,6 +20,16 @@ public class Painting : MonoBehaviour
         
     }
 
+    public void Show()
+    {
+        SpriteRend.gameObject.SetActive(true);
+    }
+
+    public void Hide()
+    {
+        SpriteRend.gameObject.SetActive(false);
+    }
+
     public void ClearLines()
     {
         for (int i = LineParent.childCount - 1; i >= 0; i--)
@@ -29,5 +39,6 @@ public class Painting : MonoBehaviour
     public void SetSprite(Sprite sprite)
     {
         SpriteRend.sprite = sprite;
+        SpriteRend.gameObject.SetActive(true);
     }
 }

@@ -246,6 +246,7 @@ public class GameLoop : MonoBehaviour
 
         // Erase previous players drawing
         Painting.ClearLines();
+        AirPlayTestController.I.StartRecording();
 
         countdownView.SetText("");
         SetView(countdownView);
@@ -268,6 +269,7 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator DrawingTimerCo()
     {
+
         //tell phone 
         BroadcastToPlayer(PlayerIdx, "DrawStart");
         //tell everyone else to wait
