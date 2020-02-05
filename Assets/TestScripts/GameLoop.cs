@@ -7,6 +7,11 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using System.Linq;
 
+public class JoinMessage
+{
+    public bool joined;
+}
+
 public class GameLoop : MonoBehaviour
 {
     public int Rounds = 4;
@@ -43,6 +48,8 @@ public class GameLoop : MonoBehaviour
     private Component CurrentView;
     private int paintingIdx = 0;
 
+    private bool splashDismissed;
+
     public int[] PlayerScores = {0, 0, 0, 0};
 
     //public static GameLoop instance;
@@ -63,12 +70,21 @@ public class GameLoop : MonoBehaviour
 
     private void OnMsg(int from, JToken data)
     {
-        if (data["action"] != null && data["action"].ToString () == "send-vote-data") {
-            var vData = JsonConvert.DeserializeObject<VotingData> (data.ToString ());
-            PlayerScores[vData.voteData[0]-1] += 5;
-            PlayerScores[vData.voteData[1]-1] += 3;
-            PlayerScores[vData.voteData[2]-1] += 1;
-            numPeopleVoted+=1;
+        var action = data["action"].ToString();
+        if (action == null)
+            return;
+
+        if (action == "start")
+        {
+            splashDismissed = true;
+        }
+        else if (action == "send-vote-data")
+        {
+            var vData = JsonConvert.DeserializeObject<VotingData>(data.ToString());
+            PlayerScores[vData.voteData[0] - 1] += 5;
+            PlayerScores[vData.voteData[1] - 1] += 3;
+            PlayerScores[vData.voteData[2] - 1] += 1;
+            numPeopleVoted += 1;
         }
     }
 
@@ -79,8 +95,14 @@ public class GameLoop : MonoBehaviour
 
     private void OnPlayerConnect(int device_id)
     {
-        Devices.Add(device_id);
-        Debug.Log(Devices.Count + " players connected");
+        bool canJoin = Devices.Count < numPlayers;
+
+        if(canJoin)
+        {
+            Devices.Add(device_id);
+        }
+
+        AirConsole.instance.Message(device_id, new JoinMessage() {joined = canJoin });
     }
 
     internal IEnumerator StartGame()
@@ -94,6 +116,7 @@ public class GameLoop : MonoBehaviour
     private IEnumerator LobbyCo()
     {
         Debug.Log("Waiting for players to connect");
+        BroadcastToAll("lobby");
         SetView(lobbyView);
 
         while(true)
@@ -113,7 +136,7 @@ public class GameLoop : MonoBehaviour
     private IEnumerator SplashCo()
     {
         SetView(splashView);
-        yield return new WaitForSeconds(splashHoldDuration);
+        yield return new WaitUntil(() => splashDismissed);
         yield break;
     }
 

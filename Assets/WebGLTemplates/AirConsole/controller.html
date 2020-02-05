@@ -7,6 +7,16 @@
 </head>
 
 <body style="background-color: white;">
+
+    <div id="splash" class="page hidden">
+        <p>Great works of art have rapidly deteriorated. You and your colleagues are the world's most elite art restoration specialists. Work quick and work masterfully to restore these paintings to their former glory.</p>
+        <button class="button2" onclick="start()">Start</button>
+    </div>
+
+    <div id="waitingForPlayers" class="page hidden">
+        <p>Waiting For Players....</p>
+    </div>
+
     <div id="draw" class="hidden">
         <div id="canvasDiv"></div>
         <div style="display:none;">
@@ -230,6 +240,24 @@
         cursor: not-allowed;
     }
 
+    .button2{
+         display:inline-block;
+         padding:0.3em 1.2em;
+         margin:0 0.3em 0.3em 0;
+         border-radius:50vw;
+         box-sizing: border-box;
+         text-decoration:none;
+         font-family:'Roboto',sans-serif;
+         font-weight:300;
+         color:#FFFFFF;
+         background-color:#4eb5f1;
+         text-align:center;
+         transition: all 0.2s;
+    }
+    .button2:hover{
+         background-color:#4095c6;
+    }
+
     .section {
         text-align: center;
         margin: auto;
@@ -273,6 +301,21 @@
       letter-spacing: 2px;
     }
 
+    .page {
+        position: fixed;
+        background-color: black;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .page p 
+    {
+        font-family: "Roboto", sans-serif;
+        font-size: 28px;
+        padding: 5vh;
+        color: #DDDDDD;
+    }
+
     .wait-page {
         position: fixed;
         background-color: black;
@@ -312,6 +355,9 @@
     var votingElement = document.getElementById("vote");
     var winLoseElement = document.getElementById("winlose");
     var winTextElement = document.getElementById("win-text");
+    var splashView = document.getElementById("splash");
+    var waitingForPlayers = document.getElementById("waitingForPlayers");
+
     var votes = [-1, -1, -1];
 
     canvas = document.createElement('canvas');
@@ -331,41 +377,30 @@
     var me = this;
     me.airconsole = new AirConsole({ "orientation": "portrait", "synchronize_time": "true" });
 
+    setView(splashView);
+
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
         console.log("data action is: " + data['action']);
         if (data === 'DrawStart') {
-            drawingElement.classList.remove("hidden");
-            votingElement.classList.add("hidden");
-            waitingElement.classList.add("hidden");
-            winLoseElement.classList.add("hidden");
+            setView(drawingElement);
+        }
+        else if (data === 'lobby'){
+            setView(waitingForPlayers);
         }
         else if (data === 'wait') {
-            drawingElement.classList.add("hidden");
-            votingElement.classList.add("hidden");
-            waitingElement.classList.remove("hidden");
-            winLoseElement.classList.add("hidden");
+            setView(waitingElement);
         }
         else if (data === 'vote') {
-            drawingElement.classList.add("hidden");
-            votingElement.classList.remove("hidden");
-            waitingElement.classList.add("hidden");
-            winLoseElement.classList.add("hidden");
-
+            setView(votingElement);
         }
         else if (data === 'win') {
-            drawingElement.classList.add("hidden");
-            votingElement.classList.add("hidden");
-            waitingElement.classList.add("hidden");
-            winLoseElement.classList.remove("hidden");
+            setView(winLoseElement);
             winTextElement.innerText = "Winner!";
             paintData = new Array();
         }
         else if (data === 'lose') {
-            drawingElement.classList.add("hidden");
-            votingElement.classList.add("hidden");
-            waitingElement.classList.add("hidden");
-            winLoseElement.classList.remove("hidden");
+            setView(winLoseElement);
             winTextElement.innerText = "Loser :(";
             paintData = new Array();
         }
@@ -421,9 +456,26 @@
     });
     var paint;
     var currentPaintData;
+    var currentView;
 
     function changeColor(i) {
         colorSelected = i;
+    }
+
+    function setView(view)
+    {
+        if(currentView !== undefined)
+            currentView.classList.add("hidden");
+
+        currentView = view;
+
+        if(currentView !== undefined)
+            currentView.classList.remove("hidden");
+    }
+
+    function start()
+    {
+        me.airconsole.message(AirConsole.SCREEN,{"action": "start"});
     }
 
     function addClick(x, y, dragging) {

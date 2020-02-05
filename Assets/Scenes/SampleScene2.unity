@@ -226,11 +226,11 @@ RectTransform:
   m_Father: {fileID: 1215702738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0.83}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: -200, y: 0}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -200, y: -20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &214626227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 21
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -325,7 +325,7 @@ MonoBehaviour:
     spaceCount: 31
     wordCount: 32
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_fontSize: 100
   m_fontSizeBase: 100
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1673,7 +1673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1137488639
 Transform:
   m_ObjectHideFlags: 0
@@ -1835,7 +1835,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1215702738
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2238,6 +2238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LineRendererParent: {fileID: 1471221831}
   gameLoop: {fileID: 0}
+  CurrentLine: {fileID: 0}
+  NumLines: 0
+  LineVertexCount: 0
 --- !u!4 &1684531391
 Transform:
   m_ObjectHideFlags: 0
@@ -2489,10 +2492,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
