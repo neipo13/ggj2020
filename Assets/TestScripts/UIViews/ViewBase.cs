@@ -13,12 +13,13 @@ public class ViewBase : MonoBehaviour
         }
     }
 
-    public void Show()
+    public virtual void Show()
     {
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
     }
-    public void Hide()
+
+    public virtual void Hide()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

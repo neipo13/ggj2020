@@ -18,6 +18,11 @@ public class MusicManager : MonoBehaviour
         I = this;
     }
 
+    private void Awake()
+    {
+        I = this;
+    }
+
     // Update is called once per frame
     void Update()
     {

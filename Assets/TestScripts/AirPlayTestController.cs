@@ -34,6 +34,7 @@ public class AirPlayTestController : MonoBehaviour {
 
     IEnumerator RecordingCo()
     {
+        painting.Hide();
         // Show the painting for a single frame, just so it gets drawn to the
         // render texture, then we need to hide it, or it'll clobber the line
         // renderers
@@ -41,7 +42,7 @@ public class AirPlayTestController : MonoBehaviour {
         yield return new WaitForEndOfFrame();
         painting.Hide();
 
-        while(true)
+        while (true)
         {
             yield return new WaitForEndOfFrame();
 
@@ -53,6 +54,8 @@ public class AirPlayTestController : MonoBehaviour {
                 CurrentLine.SetPosition(0, last);
             }
         }
+
+        yield break;
     }
 
     void OnMessage (int from, JToken message) {

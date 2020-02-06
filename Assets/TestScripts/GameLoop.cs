@@ -45,27 +45,24 @@ public class GameLoop : MonoBehaviour
     // State vars
     private int PlayerIdx = 0;
     private int numPeopleVoted = 0;
-    private Component CurrentView;
+    private ViewBase CurrentView;
     private int paintingIdx = 0;
 
     private bool splashDismissed;
 
     public int[] PlayerScores = {0, 0, 0, 0};
 
-    //public static GameLoop instance;
+    public static GameLoop I;
 
     private void Awake()
     {
+        I = this;
+
         AirConsole.instance.onConnect += OnPlayerConnect;
         AirConsole.instance.onDisconnect += OnPlayerDisconnect;
         AirConsole.instance.onMessage += OnMsg;
 
         StartCoroutine(StartGame());
-    }
-
-    private void Start()
-    {
-        MusicManager.I.PlayRandom();
     }
 
     private void OnMsg(int from, JToken data)
@@ -199,7 +196,7 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator VoteCo()
     {
-        //MusicManager.I.PlayMurmur();
+        MusicManager.I.PlayMurmur();
 
         SetView(timeToVote);
         Painting.gameObject.SetActive(false);
@@ -243,10 +240,10 @@ public class GameLoop : MonoBehaviour
     private IEnumerator CountdownCo()
     {
         // Play a random bit of music
-        //MusicManager.I.PlayRandom();
+        MusicManager.I.PlayRandom();
 
         // Erase previous players drawing
-        Painting.ClearLines();
+        Painting.NewPainting(PlayerIdx);
         AirPlayTestController.I.StartRecording();
 
         countdownView.SetText("");
@@ -338,14 +335,14 @@ public class GameLoop : MonoBehaviour
         }
     }
 
-    private void SetView(Component component)
+    private void SetView(ViewBase view)
     {
         if (CurrentView != null)
-            CurrentView.gameObject.SetActive(false);
+            CurrentView.Hide();
 
-        CurrentView = component;
+        CurrentView = view;
 
         if (CurrentView != null)
-            CurrentView.gameObject.SetActive(true);
+            CurrentView.Show();
     }
 }
