@@ -413,10 +413,11 @@
 
 
     canvas.addEventListener("mousedown", function (e) {
+        
+        me.airconsole.message(AirConsole.SCREEN, { "action": "new-stroke" });
+
         var mouseX = e.pageX - this.offsetLeft;
         var mouseY = e.pageY - this.offsetTop;
-
-        me.airconsole.message(AirConsole.SCREEN, { "action": "new-stroke" });
 
         paint = true;
         addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
@@ -433,6 +434,10 @@
     });
 
     canvas.addEventListener("touchstart", function (e) {
+
+        me.airconsole.message(AirConsole.SCREEN, { "action": "new-stroke" });
+
+
         var x = (event.targetTouches[0] ? event.targetTouches[0].pageX : event.changedTouches[event.changedTouches.length - 1].pageX);
         var y = (event.targetTouches[0] ? event.targetTouches[0].pageY : event.changedTouches[event.changedTouches.length - 1].pageY);
         var mouseX = x - this.offsetLeft;
@@ -476,7 +481,7 @@
     function start()
     {
         me.airconsole.message(AirConsole.SCREEN,{"action": "start"});
-        setView(lobby);
+        setView(waitingForPlayers);
     }
 
     function addClick(x, y, dragging) {

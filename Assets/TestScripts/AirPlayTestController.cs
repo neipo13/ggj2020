@@ -14,7 +14,6 @@ public class AirPlayTestController : MonoBehaviour {
 
     public List<StrokeData> CurrentStrokeData = new List<StrokeData>();
     public LineRenderer CurrentLine;
-    public int LineVertexCount;
 
     public static AirPlayTestController I;
 
@@ -52,7 +51,6 @@ public class AirPlayTestController : MonoBehaviour {
                 var last = CurrentLine.GetPosition(CurrentLine.positionCount - 1);
                 CurrentLine.positionCount = 1;
                 CurrentLine.SetPosition(0, last);
-                LineVertexCount = 1;
             }
         }
     }
@@ -64,9 +62,7 @@ public class AirPlayTestController : MonoBehaviour {
         if(action == "send-stroke-data")
         {
             point = JsonConvert.DeserializeObject<StrokeData>(message["stroke-data"].ToString());
-            //CurrentStrokeData.Add(strokeData);
-            //RenderLine(CurrentStrokeData);
-
+            
             if(newStroke)
             {
                 ColorUtility.TryParseHtmlString(point.color, out Color color);
@@ -76,9 +72,10 @@ public class AirPlayTestController : MonoBehaviour {
 
             if (CurrentLine != null)
             {
-                CurrentLine.positionCount = LineVertexCount + 1;
-                CurrentLine.SetPosition(LineVertexCount, new Vector3(point.x / 100f, -point.y / 100f, 10f));
-                LineVertexCount++;
+                int n = CurrentLine.positionCount + 1;
+                CurrentLine.positionCount = n;
+                CurrentLine.SetPosition(n - 1, new Vector3(point.x / 100f, -point.y / 100f, 10f));
+                //LineVertexCount++;
             }
         }
 
@@ -87,9 +84,9 @@ public class AirPlayTestController : MonoBehaviour {
             if (CurrentLine == null)
             {
                 CurrentLine = SpawnNewLine();
-                CurrentLine.positionCount = 0;
             }
 
+            CurrentLine.positionCount = 0;
             newStroke = true;
         }
     }
@@ -107,7 +104,7 @@ public class AirPlayTestController : MonoBehaviour {
     private LineRenderer SpawnNewLine()
     {
         //CurrentStrokeData = new List<StrokeData>();
-        LineVertexCount = 0;
+        //LineVertexCount = 0;
 
         //create a gameobject
         var obj = new GameObject("Line");
