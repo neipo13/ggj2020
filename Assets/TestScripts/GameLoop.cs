@@ -316,7 +316,7 @@ public class GameLoop : MonoBehaviour
 
     private void BroadcastToPlayer(int playerIdx, string evt)
     {
-        if (playerIdx < Devices.Count)
+        if (playerIdx >= Devices.Count)
             return;
 
         int deviceId = Devices[playerIdx]; 

@@ -2543,7 +2543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e6cb1231838f43ce986c69b6934dfe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rounds: 2
+  Rounds: 3
   splashView: {fileID: 1215702741}
   lobbyView: {fileID: 779854376}
   countdownView: {fileID: 356449843}
@@ -2569,8 +2569,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1e162517c42e644808cd90e875a7eb0e, type: 3}
   Painting: {fileID: 1137488640}
   Devices: 
-  DrawingRoundDuration: 30
-  numPlayers: 2
+  DrawingRoundDuration: 60
+  numPlayers: 4
   numRounds: 3
   CountdownDuration: 4
   nextPlayerDuration: 2
@@ -4105,7 +4105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37d83ebce05ad74683fd3228dde9e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  browserStartMode: 0
+  browserStartMode: 2
   controllerHtml: {fileID: 4900000, guid: 9a7ba1c599821784e99c2c861058d66b, type: 3}
   autoScaleCanvas: 0
 --- !u!4 &1897051636
