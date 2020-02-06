@@ -204,16 +204,21 @@ public class GameLoop : MonoBehaviour
         numPeopleVoted = 0;
         // Put phone client in the vote state
         BroadcastToAll("vote");
+
         yield return new WaitUntil(() => { return numPeopleVoted >= numPlayers; });        
 
         int winningPlayerIdx = SelectWinner();
-        voteResultsView.SetText(string.Format("Player {0}  Wins!", winningPlayerIdx));
-        SetView(voteResultsView);
+
+        timeToVote.ShowWinner(winningPlayerIdx);
+        ///voteResultsView.SetText(string.Format("Player {0}  Wins!", winningPlayerIdx));
+        //SetView(voteResultsView);
 
         BroadcastToPlayer(winningPlayerIdx, "win");
         BroadcastToOthers(winningPlayerIdx, "lose");
 
         yield return new WaitForSeconds(voteResultsDuration);
+
+        SetView(null);
     }
 
     private int SelectWinner()
@@ -311,6 +316,9 @@ public class GameLoop : MonoBehaviour
 
     private void BroadcastToPlayer(int playerIdx, string evt)
     {
+        if (playerIdx < Devices.Count)
+            return;
+
         int deviceId = Devices[playerIdx]; 
         AirConsole.instance.Message(deviceId, evt);
     }
