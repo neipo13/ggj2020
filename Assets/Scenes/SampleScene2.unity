@@ -1324,12 +1324,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Source: {fileID: 854472030}
   Clips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MummurClip: {fileID: 0}
+  - {fileID: 8300000, guid: 59b79a37895f3454cbd1fe1621f2c0c8, type: 3}
+  - {fileID: 8300000, guid: 2860bea0965f945a1b53b16dc69e805e, type: 3}
+  - {fileID: 8300000, guid: d88f0b3b62acd42e5bb2fd2664e40675, type: 3}
+  - {fileID: 8300000, guid: 2c62d56b6849749208af7f40186112d4, type: 3}
+  MummurClip: {fileID: 8300000, guid: 880c19b11b2f74c4a8f5e05e0db35c7b, type: 3}
+  IntroClip: {fileID: 8300000, guid: 6b5a962ce255c406b80a5eef84e0dccb, type: 3}
 --- !u!1 &899247467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +1924,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   MummurClip: {fileID: 0}
+  IntroClip: {fileID: 0}
 --- !u!82 &1266281664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2439,7 +2440,6 @@ MonoBehaviour:
   gameLoop: {fileID: 0}
   painting: {fileID: 1137488640}
   CurrentLine: {fileID: 0}
-  LineVertexCount: 0
 --- !u!4 &1684531391
 Transform:
   m_ObjectHideFlags: 0
@@ -3102,7 +3102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37d83ebce05ad74683fd3228dde9e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  browserStartMode: 0
+  browserStartMode: 3
   controllerHtml: {fileID: 4900000, guid: 9a7ba1c599821784e99c2c861058d66b, type: 3}
   autoScaleCanvas: 0
 --- !u!4 &1897051636

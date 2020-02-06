@@ -65,7 +65,7 @@ public class GameLoop : MonoBehaviour
 
     private void Start()
     {
-        //MusicManager.I.PlayRandom();
+        MusicManager.I.PlayRandom();
     }
 
     private void OnMsg(int from, JToken data)
@@ -135,6 +135,7 @@ public class GameLoop : MonoBehaviour
 
     private IEnumerator SplashCo()
     {
+        MusicManager.I.PlayIntro();
         SetView(splashView);
         yield return new WaitUntil(() => splashDismissed);
         yield break;
