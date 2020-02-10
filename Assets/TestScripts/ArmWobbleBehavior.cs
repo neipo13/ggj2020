@@ -34,7 +34,8 @@ public class ArmWobbleBehavior : MonoBehaviour
     {
         //move elbow
         //deque & use
-        float y = yPositions.Dequeue() * elbowWobbleMultiplier;
+        float yChange = yPositions.Dequeue() - elbow.transform.position.y;
+        float y =  elbow.transform.position.y + (yChange * elbowWobbleMultiplier);
         float x = (shoulder.transform.position.x + hand.transform.position.x) / 2f;
         elbow.transform.position = new Vector3(x, y, zPos);
         //enqueue hand pos
