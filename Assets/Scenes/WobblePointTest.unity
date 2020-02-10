@@ -390,5 +390,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arm
       objectReference: {fileID: 0}
+    - target: {fileID: 7539214899111529405, guid: a0e39129284118e41ae2e8e9fc984807,
+        type: 3}
+      propertyPath: elbowWobbleMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539214899111529405, guid: a0e39129284118e41ae2e8e9fc984807,
+        type: 3}
+      propertyPath: elbowLoweringDistance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0e39129284118e41ae2e8e9fc984807, type: 3}

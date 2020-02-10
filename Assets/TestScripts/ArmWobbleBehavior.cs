@@ -14,6 +14,7 @@ public class ArmWobbleBehavior : MonoBehaviour
 
     public int elbowFramesBehindHand = 25;
     public float elbowWobbleMultiplier = 1.2f;
+    public float elbowLoweringDistance = 1.2f;
 
     // each frame we pop the front off to move the elbow and add the hand position to the back - handles elbow wobble movement
     public Queue<float> yPositions; 
@@ -35,7 +36,7 @@ public class ArmWobbleBehavior : MonoBehaviour
         //move elbow
         //deque & use
         float yChange = yPositions.Dequeue() - elbow.transform.position.y;
-        float y =  elbow.transform.position.y + (yChange * elbowWobbleMultiplier);
+        float y =  elbow.transform.position.y + (yChange * elbowWobbleMultiplier) - elbowLoweringDistance;
         float x = (shoulder.transform.position.x + hand.transform.position.x) / 2f;
         elbow.transform.position = new Vector3(x, y, zPos);
         //enqueue hand pos
