@@ -382,6 +382,7 @@
         console.log("data action is: " + data['action']);
         if (data === 'DrawStart') {
             setView(drawingElement);
+            redraw();
         }
         else if (data === 'lobby'){
             setView(waitingForPlayers);
@@ -406,6 +407,7 @@
             console.log("got round start msg");
             resetVotes();
             image.src = data.painting;
+            redraw();
         }
     };
 
