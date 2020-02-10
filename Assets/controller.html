@@ -376,6 +376,7 @@
     me.airconsole = new AirConsole({ "orientation": "portrait", "synchronize_time": "true" });
 
     setView(splashView);
+    //setInterval(redraw, 1000); // redrawing every second to force the image to show... prob overkill & not needed
 
     me.airconsole.onMessage = function (from, data) {
         console.log("onMessage", from, data);
