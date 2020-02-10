@@ -11,6 +11,7 @@ public class AirPlayTestController : MonoBehaviour {
     public Transform LineRendererParent;
     public GameLoop gameLoop;
     public Painting painting;
+    public GameObject brush;
 
     public List<StrokeData> CurrentStrokeData = new List<StrokeData>();
     public LineRenderer CurrentLine;
@@ -80,6 +81,7 @@ public class AirPlayTestController : MonoBehaviour {
                 CurrentLine.SetPosition(n - 1, new Vector3(point.x / 100f, -point.y / 100f, 10f));
                 //LineVertexCount++;
             }
+            brush.transform.position = new Vector3((point.x / 100f) + CurrentLine.transform.position.x, (-point.y / 100f) + CurrentLine.transform.position.y, brush.transform.position.z);
         }
 
         if(action == "new-stroke")
